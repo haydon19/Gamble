@@ -19,14 +19,19 @@ public class InputController : MonoBehaviour {
     void Update()
     {
 
-        print("X: " + Input.GetAxis("Horizontal") + " Y: " + Input.GetAxis("Vertical"));
+        //print("X: " + Input.GetAxis("Horizontal") + " Y: " + Input.GetAxis("Vertical"));
 
         jump();
         walk();
         
-        if (Input.GetAxis("Vertical") < 0 && player.groundState == GroundState.Grounded)
+        if (Input.GetAxis("Vertical") < 0 && player.groundState == GroundState.Grounded && player.playerState != PlayerState.Walk)
         {
             player.playerState = PlayerState.Crouch;
+        }
+
+        if(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0 && player.groundState == GroundState.Grounded)
+        {
+            player.playerState = PlayerState.Idle;
         }
 
 
@@ -35,11 +40,11 @@ public class InputController : MonoBehaviour {
 
     public void jump()
     {
-        print("A Button Pressed");
-        if (Input.GetKey("joystick button 0") && player.groundState == GroundState.Grounded)
+
+        if (Input.GetKeyDown("joystick button 0") && player.groundState == GroundState.Grounded)
         {
             Vector2 jumpingPower = new Vector2(0, player.jumpSpeed);
-            rb.AddForce(jumpingPower);
+            rb.AddForce(jumpingPower, ForceMode2D.Impulse);
         }
     }
 

@@ -6,7 +6,7 @@ public enum GroundState { Grounded, Airborn };
 public enum PlayerState { Idle, Walk, Jump, Falling, Crouch };
 
 public class PlayerController : MonoBehaviour {
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     AnimationController renderer;
     public float walkSpeed = 4;
     public float jumpSpeed = 150;
@@ -21,8 +21,9 @@ public class PlayerController : MonoBehaviour {
     }
     void StateHandler()
     {
-        if (rb.velocity.y == 0 && rb.velocity.x == 0 && playerState != PlayerState.Crouch)
+        if (rb.velocity.y == 0 && rb.velocity.x == 0 && playerState != PlayerState.Crouch && groundState == GroundState.Grounded)
         {
+            print(true);
             playerState = PlayerState.Idle;
          }
         else
@@ -46,14 +47,13 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
-    // SetFlag("IsWalking", true);
 
   
 
     // Update is called once per frame
     void Update () {
 
-        //Movement
+        //Sets the players state based on its movement
         StateHandler();
     }
 
