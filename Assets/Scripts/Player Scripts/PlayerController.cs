@@ -8,8 +8,10 @@ public enum PlayerState { Idle, Walk, Jump, Falling, Crouch };
 public class PlayerController : MonoBehaviour {
     Rigidbody2D rb;
     AnimationController renderer;
-    public float walkSpeed = 5;
-    public float jumpSpeed = 5;
+    public float walkSpeed = 4;
+    public float jumpSpeed = 150;
+    public float maxJumpHeight = 350;
+    public float minJumpHeight = 200;
     public GroundState groundState = GroundState.Grounded;
     public PlayerState playerState = PlayerState.Idle;
     // Use this for initialization
