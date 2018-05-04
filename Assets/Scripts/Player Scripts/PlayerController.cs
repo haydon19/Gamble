@@ -3,27 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum GroundState { Grounded, Airborn };
-public enum PlayerState { Idle, Walk, Jump, Falling, Crouch };
+public enum PlayerState { Idle, Walk, Jump, Falling, Crouch, Attacking};
 
 public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
     AnimationController renderer;
+
     public float walkSpeed = 4;
     public float jumpSpeed = 150;
     public float maxJumpHeight = 350;
     public float minJumpHeight = 200;
     public GroundState groundState = GroundState.Grounded;
     public PlayerState playerState = PlayerState.Idle;
+    public PlayerState previousState;
+    public float attackSpeed = 0.04f;
+    public float attackCooldown = 0f;
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         renderer = GetComponent<AnimationController>();
+        previousState = PlayerState.Idle;
     }
     void StateHandler()
     {
+        if(attackCooldown > 0)
+        {
+            attackCooldown -= Time.deltaTime;
+            if(attackCooldown <= 0)
+            {
+                attackCooldown = 0;
+            }
+        }
+
+        if (playerState == PlayerState.Attacking)
+        {
+            return;
+        }
+
         if (rb.velocity.y == 0 && rb.velocity.x == 0 && playerState != PlayerState.Crouch && groundState == GroundState.Grounded)
         {
-            print(true);
             playerState = PlayerState.Idle;
          }
         else
@@ -42,7 +60,6 @@ public class PlayerController : MonoBehaviour {
             if (groundState == GroundState.Grounded && rb.velocity.x != 0)
             {
                 playerState = PlayerState.Walk;
-
             }
         }
 
@@ -57,5 +74,15 @@ public class PlayerController : MonoBehaviour {
         StateHandler();
     }
 
+
+    public void SetToPreviousState()
+    {
+        playerState = previousState;
+    }
+
+    public void SetPlayerState(PlayerState state)
+    {
+        playerState = state;
+    }
  
 }

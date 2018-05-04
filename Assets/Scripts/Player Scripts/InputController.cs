@@ -7,33 +7,56 @@ public class InputController : MonoBehaviour {
 
     Rigidbody2D rb;
     PlayerController player;
+    List<BoxCollider2D> colliders;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<PlayerController>();
+        colliders = new List<BoxCollider2D>();
+        colliders.AddRange(GetComponentsInChildren<BoxCollider2D>());
     }
 
     // Update is called once per frame
 
     void Update()
     {
+        /*
+        if(Input.GetAxis("Vertical") < 0 && Input.GetButtonDown("Jump"))
+        {
+            foreach(BoxCollider2D collider in colliders)
+            {
+                collider.isTrigger = true;
+            }
 
+        }
+        */
         //print("X: " + Input.GetAxis("Horizontal") + " Y: " + Input.GetAxis("Vertical"));
 
         jump();
         walk();
         
-        if (Input.GetAxis("Vertical") < 0 && player.groundState == GroundState.Grounded && player.playerState != PlayerState.Walk)
+
+        if (Input.GetAxis("Vertical") < 0 && player.groundState == GroundState.Grounded && player.playerState == PlayerState.Idle)
         {
             player.playerState = PlayerState.Crouch;
         }
 
-        if(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0 && player.groundState == GroundState.Grounded)
+        
+
+        if(Input.GetAxis("Vertical") >= 0 && Input.GetAxis("Horizontal") == 0 && player.groundState == GroundState.Grounded && player.playerState != PlayerState.Attacking)
         {
+            print("Setting Idle");
             player.playerState = PlayerState.Idle;
         }
 
+        if (Input.GetButtonDown("Attack") && player.playerState != PlayerState.Attacking && player.attackCooldown == 0)
+        {
+            player.attackCooldown = player.attackSpeed;
+            player.previousState = player.playerState;
+            print("Attack Pressed!");
+            player.playerState = PlayerState.Attacking;
+        }
 
     }
 
@@ -41,7 +64,7 @@ public class InputController : MonoBehaviour {
     public void jump()
     {
 
-        if (Input.GetKeyDown("joystick button 0") && player.groundState == GroundState.Grounded)
+        if (Input.GetButtonDown("Jump") && player.groundState == GroundState.Grounded && Input.GetAxis("Vertical") >= 0)
         {
             Vector2 jumpingPower = new Vector2(0, player.jumpSpeed);
             rb.AddForce(jumpingPower, ForceMode2D.Impulse);
@@ -64,23 +87,7 @@ public class InputController : MonoBehaviour {
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Ground")
-        {
-            print("Player State: Grounded");
-           player.groundState = GroundState.Grounded;
-        }
-    }
 
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Ground")
-        {
-            print("Player State: Airborne");
-            player.groundState = GroundState.Airborn;
-        }
-    }
 
 
 

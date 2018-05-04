@@ -10,11 +10,13 @@ public class AnimationController : MonoBehaviour {
     SpriteRenderer spriteRenderer;
     //Need access to PlayerController Functions to know what the player is doing.
 
+    
     // Use this for initialization
     void Start () {
         player = GetComponent<PlayerController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        
 	}
 	
 	// Update is called once per frame
@@ -22,12 +24,13 @@ public class AnimationController : MonoBehaviour {
         animator.SetInteger("PlayerState", (int)player.playerState);
         if(player.rb.velocity.x > 0)
         {
-            spriteRenderer.flipX = false;
+            transform.rotation = Quaternion.Euler(0,0,0);
         } else if(player.rb.velocity.x < 0)
         {
-            spriteRenderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180f, 0);
 
         }
     }
+
     
 }
