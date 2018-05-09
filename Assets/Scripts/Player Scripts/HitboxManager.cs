@@ -27,7 +27,7 @@ public class HitboxManager : MonoBehaviour {
     {
         if (collision.collider.tag == "Ground")
         {
-            print("Player State: Grounded");
+            //print("Player State: Grounded");
             player.groundState = GroundState.Grounded;
 
 
@@ -53,8 +53,8 @@ public class HitboxManager : MonoBehaviour {
     {
         if (collision.collider.tag == "Ground")
         {
-            print("Happened");
-            print(collision.collider.tag);
+            //print("Happened");
+            //print(collision.collider.tag);
             player.groundState = GroundState.Airborn;
         }
     }

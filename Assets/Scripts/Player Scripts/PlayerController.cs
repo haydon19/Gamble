@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum GroundState { Grounded, Airborn };
-public enum PlayerState { Idle, Walk, Jump, Falling, Crouch, Attacking};
+public enum PlayerState { Idle, Walk, Jump, Falling, Crouch, Attacking, RangedAttack};
 
 public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
     AnimationController renderer;
 
+    public float health = 20;
+    public float maxHealth = 30;
     public float walkSpeed = 4;
     public float jumpSpeed = 150;
     public float maxJumpHeight = 350;
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         renderer = GetComponent<AnimationController>();
         previousState = PlayerState.Idle;
+        HealthBar.instance.UpdateHealth(health, maxHealth);
     }
     void StateHandler()
     {
@@ -36,6 +39,12 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (playerState == PlayerState.Attacking)
+        {
+            return;
+        }
+
+        //Added Wednesday 2018-05-09
+        if(playerState == PlayerState.RangedAttack)
         {
             return;
         }
