@@ -57,8 +57,8 @@ public class EnemyController : MonoBehaviour {
             dir *= -1;
         }
 
-        //rb.velocity = new Vector2(2*dir,rb.velocity.y);
-        rb.AddForce(new Vector2(6 * -dir, 0));
+        rb.velocity = new Vector2(2*dir,rb.velocity.y);
+        //rb.AddForce(new Vector2(6 * -dir, 0));
 
         if(target != null && target.gameObject.transform.position.y > transform.position.y)
         {
