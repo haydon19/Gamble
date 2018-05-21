@@ -40,18 +40,20 @@ public class AnimationController : MonoBehaviour {
             //angle is used to determine the angle in which the right analog stick is being held
             var angle = Mathf.Atan2(Input.GetAxis("RHorizontal"), Input.GetAxis("RVertical")) * Mathf.Rad2Deg -90;
             print("Angle: " + angle);
-            if (angle <= 90 || angle >= -90)
+            if (angle <= -90)
             {
-                print("Less than 90, and GREATER THAN -90");
+                //print("Less than 90, and GREATER THAN -90");
                 armRotation.transform.rotation = Quaternion.Euler(0, 0, angle);
+                transform.rotation = Quaternion.Euler(0, 180f, 0);
+
             }
             else
             {
                 //Rotate Player when aiming behind
-                print("THIS HAPPENED! Player should be facing left.");
-                transform.rotation = Quaternion.Euler(0, 180f, 0);
+                //print("THIS HAPPENED! Player should be facing left.");
+                transform.rotation = Quaternion.Euler(0, 0, 0);
                 //Rotate the animation for the gun on the Y-axis
-                armRotation.transform.rotation = Quaternion.Euler(0, 180f, angle);
+                armRotation.transform.rotation = Quaternion.Euler(0, 0, angle);
             }
         }
         else

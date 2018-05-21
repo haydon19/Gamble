@@ -72,7 +72,7 @@ public class InputController : MonoBehaviour {
         if(Input.GetAxis("RHorizontal") != 0 || Input.GetAxis("RVertical") != 0 && player.playerState != PlayerState.Attacking && player.attackCooldown == 0)
         {
             player.playerState = PlayerState.RangedAttack;
-            print("PlayerState: RangedAttack");
+            //print("PlayerState: RangedAttack");
             if (Input.GetButtonDown("Fire"))
             {
                 print("Shot Fired!");

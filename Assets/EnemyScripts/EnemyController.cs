@@ -73,7 +73,6 @@ public class EnemyController : MonoBehaviour {
   
         if (hit && hit.collider.tag == "Player")
         {
-            print("Detected");
             target = hit.collider.transform.GetComponentInParent<PlayerController>();
         }
         
