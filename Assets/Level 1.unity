@@ -4085,6 +4085,8 @@ GameObject:
   m_Component:
   - component: {fileID: 912239200}
   - component: {fileID: 912239201}
+  - component: {fileID: 912239202}
+  - component: {fileID: 912239203}
   m_Layer: 0
   m_Name: Rogue_Pistol
   m_TagString: Untagged
@@ -4101,7 +4103,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.04, y: 0.065, z: -1}
   m_LocalScale: {x: 1.0185518, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2131756899}
   m_Father: {fileID: 359662674}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4150,6 +4153,33 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &912239202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 912239199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e139528f343e1914ba5cf20c95ec025f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &912239203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 912239199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656170368f45cb042999670662e53c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0
+  damage: 10
+  timeToFire: 0.5
+  firePoint: {fileID: 2131756899}
+  shot: {fileID: 1164230786148296, guid: f59d16e7e06f6e44f83104194189e041, type: 2}
 --- !u!1001 &931865292
 Prefab:
   m_ObjectHideFlags: 0
@@ -4968,3 +4998,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &2131756898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2131756899}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2131756899
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2131756898}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.463, y: 0.056105673, z: -1.5031574}
+  m_LocalScale: {x: 0.4994838, y: 0.7374999, z: 1}
+  m_Children: []
+  m_Father: {fileID: 912239200}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
