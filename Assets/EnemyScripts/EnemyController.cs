@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
+    public int health = 10;
     public float turnTime = 1f;
     public float timer = 0;
     public int dir = 1;
@@ -28,12 +29,12 @@ public class EnemyController : MonoBehaviour {
     {
         if(collision.tag == "PlayerAttack")
         {
-            //print("Hit by player!");
+            print("Hit by player!");
             //Hit from the right.
             if(collision.transform.position.x < transform.position.x)
             {
                 rb.AddForce(new Vector2(3, 0),ForceMode2D.Impulse);
-                //print("Hit from left.");
+                print("Hit from left.");
             }
             //Hit from the left or equal.
             else
@@ -62,7 +63,7 @@ public class EnemyController : MonoBehaviour {
 
         if(target != null && target.gameObject.transform.position.y > transform.position.y)
         {
-            rb.AddForce(new Vector2(0, 4), ForceMode2D.Impulse);
+           // rb.AddForce(new Vector2(0, 4), ForceMode2D.Impulse);
         }
     }
 

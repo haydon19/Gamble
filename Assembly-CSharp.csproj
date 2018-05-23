@@ -67,18 +67,18 @@
     <Compile Include="Assets\2d-extras-master\Assets\Tilemap\Tiles\Rule Tile\Scripts\RuleTile.cs" />
     <Compile Include="Assets\2d-extras-master\Assets\Tilemap\Tiles\Terrain Tile\Scripts\TerrainTile.cs" />
     <Compile Include="Assets\2d-extras-master\Assets\Tilemap\Tiles\Weighted Random Tile\WeightedRandomTile.cs" />
-    <Compile Include="Assets\Collectable.cs" />
     <Compile Include="Assets\EnemyScripts\EnemyController.cs" />
-    <Compile Include="Assets\ProjectileBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Background Scripts\ScrollingBackground.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\Collectable.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\AnimationController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\ArmRotation.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\HitboxManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerCameraFollow.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon.cs" />
-    <Compile Include="Assets\ScrollingBackground.cs" />
-    <Compile Include="Assets\UI Scripts\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\RangedWeapon.cs" />
+    <Compile Include="Assets\Scripts\Ranged Weapon Scripts\ProjectileBehaviour.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\HealthBar.cs" />
     <None Include="Assets\2d-extras-master\Assets\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Documents/GitHub/Gamble/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
