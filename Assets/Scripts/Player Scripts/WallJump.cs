@@ -29,7 +29,7 @@ public class WallJump : MonoBehaviour {
                 //movement.outsideForce = true;
                 player.direction = (Direction)(-(int)player.direction);
 
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed * (int)player.direction, speed/2);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(speed * (int)player.direction, speed);
 
                  
 

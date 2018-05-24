@@ -17,6 +17,7 @@ public class InputController : MonoBehaviour {
     PlayerController player;
     List<BoxCollider2D> colliders;
 
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -29,6 +30,7 @@ public class InputController : MonoBehaviour {
 
     void Update()
     {
+         
         /*
         if(Input.GetAxis("Vertical") < 0 && Input.GetButtonDown("Jump"))
         {
@@ -89,9 +91,16 @@ public class InputController : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump") && player.groundState == GroundState.Grounded && Input.GetAxis("LVertical") >= 0)
         {
+            //the initial jumping force
             Vector2 jumpingPower = new Vector2(0, player.jumpSpeed);
             rb.AddForce(jumpingPower, ForceMode2D.Impulse);
+        } else if(Input.GetButton("Jump") && player.playerState == PlayerState.Jump) 
+        {
+            //if we continue to hold the jump button, add a bit more force
+            rb.AddForce(new Vector2(0, 10f));
+            print("thing");
         }
+       
     }
 
     public void walk()
@@ -111,7 +120,7 @@ public class InputController : MonoBehaviour {
 
             }
 
-            print("Y Velocity " + rb.velocity.y);
+            //print("Y Velocity " + rb.velocity.y);
             rb.velocity = new Vector2(player.walkSpeed * (int)player.direction, rb.velocity.y);
         }
     }

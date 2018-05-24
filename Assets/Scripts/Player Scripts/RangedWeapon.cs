@@ -34,7 +34,9 @@ public class RangedWeapon : MonoBehaviour {
     void Shoot()
     {
         var angle = Mathf.Atan2(Input.GetAxis("RHorizontal"), Input.GetAxis("RVertical")) * Mathf.Rad2Deg - 90;
+
         Vector3 firePointPosition = new Vector3(0, 0, angle);
+
         if(Time.time > timeToFire)
         {
             timeToFire = Time.time + fireRate;

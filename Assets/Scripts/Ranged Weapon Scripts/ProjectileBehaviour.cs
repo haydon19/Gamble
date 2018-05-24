@@ -8,6 +8,7 @@ public class ProjectileBehaviour : MonoBehaviour {
     public float speed = 1000;
     Rigidbody2D rb;
     private BoxCollider2D activeHitbox;
+    public float maxTime = 10.0f;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -17,7 +18,20 @@ public class ProjectileBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       
+
+        //increase this gameobjects life counter
+        maxTime -= Time.deltaTime;
+
+        //destroy it if its lived too long
+        if(maxTime<= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        //TODO: check if it has left some sort of bounds
+
+        //TODO: Check if there is too many bullets on screen, then delete the oldest one
+
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

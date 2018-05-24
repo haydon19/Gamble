@@ -32,6 +32,16 @@ public class HitboxManager : MonoBehaviour {
 
 
         }
+
+        
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "GoalFlag")
+        {
+            GameManager.instance.end = true;
+        }
     }
     /*
     public void OnTriggerExit2D(Collider2D collision)
@@ -56,6 +66,7 @@ public class HitboxManager : MonoBehaviour {
             //print("Happened");
             //print(collision.collider.tag);
             player.groundState = GroundState.Airborn;
+
         }
     }
 
