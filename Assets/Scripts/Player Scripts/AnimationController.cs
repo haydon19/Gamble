@@ -22,17 +22,22 @@ public class AnimationController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         animator.SetInteger("PlayerState", (int)player.playerState);
-        if(player.rb.velocity.x > 0)
+        if (player.direction == Direction.Right)
         {
-            transform.rotation = Quaternion.Euler(0,0,0);
-        } else if(player.rb.velocity.x < 0)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        if (player.direction == Direction.Left)
         {
             transform.rotation = Quaternion.Euler(0, 180f, 0);
 
         }
 
         //Shows sprite with pistol out
-        if(player.playerState == PlayerState.RangedAttack)
+
+
+        //This also need to go ~Clay
+        if (player.playerState == PlayerState.RangedAttack)
         {
             armRotation.SetActive(true);
             

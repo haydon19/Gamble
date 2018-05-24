@@ -4,11 +4,15 @@ using UnityEngine;
 
 public enum GroundState { Grounded, Airborn };
 public enum PlayerState { Idle, Walk, Jump, Falling, Crouch, Attacking, RangedAttack};
+public enum Direction { Left = -1, Right = 1 };
+
 
 public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
     AnimationController renderer;
 
+
+    public Direction direction = Direction.Right;
     public float health = 20;
     public float maxHealth = 30;
     public float walkSpeed = 4;

@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 359662676}
   - component: {fileID: 359662673}
   - component: {fileID: 359662669}
+  - component: {fileID: 359662677}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -493,9 +494,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  direction: 1
   health: 20
   maxHealth: 30
-  walkSpeed: 15
+  walkSpeed: 5
   jumpSpeed: 13
   maxJumpHeight: 350
   minJumpHeight: 200
@@ -612,6 +614,20 @@ MonoBehaviour:
   - {fileID: 1014807207}
   activeHitbox: {fileID: 1159742823}
   attackTrigger: {fileID: 232275780}
+--- !u!114 &359662677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359662668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce93a4c6fbf8f864c94c518fa0360ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 359662671}
+  distance: 0.3
+  speed: 5
 --- !u!1001 &361540150
 Prefab:
   m_ObjectHideFlags: 0
@@ -759,7 +775,7 @@ GameObject:
   - component: {fileID: 539460017}
   - component: {fileID: 539460016}
   - component: {fileID: 539460015}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1672,7 +1688,7 @@ GameObject:
   - component: {fileID: 823219196}
   - component: {fileID: 823219197}
   - component: {fileID: 823219195}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4848,7 +4864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790067034}
   - component: {fileID: 1790067033}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid
   m_TagString: Ground
   m_Icon: {fileID: 0}

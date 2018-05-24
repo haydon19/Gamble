@@ -69,8 +69,8 @@ public class EnemyController : MonoBehaviour {
 
     public void CheckForTarget()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left * dir, 10);
-        Debug.DrawRay(transform.position, Vector2.left * dir * 10, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left * -dir, 10);
+        Debug.DrawRay(transform.position, Vector2.left * -dir * 10, Color.green);
   
         if (hit && hit.collider.tag == "Player")
         {
