@@ -21,7 +21,9 @@ public class WallJump : MonoBehaviour {
         //Wall Sliding
         if(hit.collider != null)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            print("Hit collider " + hit.collider.name);
+            player.rb.velocity = new Vector2(0, 0);
+            player.rb.gravityScale = 0f;
             if (Input.GetButtonDown("Jump"))
             {
 
@@ -29,13 +31,16 @@ public class WallJump : MonoBehaviour {
                 //movement.outsideForce = true;
                 player.direction = (Direction)(-(int)player.direction);
 
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed * (int)player.direction, speed);
+                player.rb.velocity = new Vector2(speed * (int)player.direction, speed);
 
                  
 
 
 
             }
+        } else
+        {
+            player.rb.gravityScale = 2f;
         }
 
 
