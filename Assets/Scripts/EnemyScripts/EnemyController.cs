@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour {
     public float timer = 0;
     public int dir = 1;
     public PlayerController target = null;
+    public bool knockback = false;
 
     Rigidbody2D rb;
 
@@ -33,7 +34,7 @@ public class EnemyController : MonoBehaviour {
             //Hit from the right.
             if(collision.transform.position.x < transform.position.x)
             {
-                rb.AddForce(new Vector2(3, 0),ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(10, 0),ForceMode2D.Impulse);
                 print("Hit from left.");
             }
             //Hit from the left or equal.
@@ -41,8 +42,9 @@ public class EnemyController : MonoBehaviour {
             {
                 //print("Hit from right.");
 
-                rb.AddForce(new Vector2(-3, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-10, 0), ForceMode2D.Impulse);
             }
+            knockback = true;
         }
     }
 
@@ -56,8 +58,10 @@ public class EnemyController : MonoBehaviour {
         {
             timer = 0;
             dir *= -1;
+            knockback = false;
         }
 
+        if(!knockback)
         rb.velocity = new Vector2(2*dir,rb.velocity.y);
         //rb.AddForce(new Vector2(6 * -dir, 0));
 

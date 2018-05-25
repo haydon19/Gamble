@@ -20,14 +20,29 @@ public class ArmRotation : MonoBehaviour {
             Vector3 input = new Vector3(Input.GetAxis("RHorizontal"), Input.GetAxis("RVertical"), 0.0f);
             //angle is used to determine the angle in which the right analog stick is being held
             var angle = Mathf.Atan2(Input.GetAxis("RHorizontal"), Input.GetAxis("RVertical")) * Mathf.Rad2Deg - 90;
-            print("Angle: " + angle);
+            //print("Angle: " + angle);
 
 
                 //Rotate Player when aiming behind
                 //print("THIS HAPPENED! Player should be facing left.");
                 //Rotate the animation for the gun on the Z-axis
+
+            if(angle <= -90)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+                transform.rotation = Quaternion.Euler(0, 0, angle-180);
+
+
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
                 transform.rotation = Quaternion.Euler(0, 0, angle);
-            
+
+            }
+
+
+
         }
         else
         {

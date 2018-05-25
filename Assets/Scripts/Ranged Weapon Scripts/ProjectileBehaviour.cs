@@ -34,18 +34,19 @@ public class ProjectileBehaviour : MonoBehaviour {
 
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.collider.tag == "Ground")
+        if (collision.tag == "Ground")
         {
             Destroy(gameObject);
         }
 
-        if(collision.collider.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
             //print("Enemy hit: Projectile Script");
             Destroy(gameObject);
         }
     }
+    
 
 }
