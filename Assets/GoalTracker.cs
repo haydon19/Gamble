@@ -13,7 +13,7 @@ public class GoalTracker : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void LateUpdate () {
 
         if(Mathf.Abs(Vector2.Distance(goalFlag.transform.position, player.transform.position)) < 3)
         {

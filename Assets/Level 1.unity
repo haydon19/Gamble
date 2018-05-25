@@ -2013,11 +2013,11 @@ RectTransform:
   m_Father: {fileID: 240928141}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000011444, y: 201.3}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &733048608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5987,8 +5987,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1443542813
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d43cb62be015e2b4aa489773b8ac384f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6011,7 +6011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e139528f343e1914ba5cf20c95ec025f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 359662671}
 --- !u!114 &912239203
 MonoBehaviour:
   m_ObjectHideFlags: 0

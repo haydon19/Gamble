@@ -22,8 +22,13 @@ public class WallJump : MonoBehaviour {
         if(hit.collider != null)
         {
             print("Hit collider " + hit.collider.name);
-            player.rb.velocity = new Vector2(0, 0);
-            player.rb.gravityScale = 0f;
+            
+            //player.rb.gravityScale = 1.0f;
+            if (Input.GetAxis("LHorizontal") == (int)player.direction)
+            {
+                player.rb.velocity = new Vector2(0, -1.5f);
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
 
@@ -40,7 +45,7 @@ public class WallJump : MonoBehaviour {
             }
         } else
         {
-            player.rb.gravityScale = 2f;
+            //player.rb.gravityScale = 2f;
         }
 
 
