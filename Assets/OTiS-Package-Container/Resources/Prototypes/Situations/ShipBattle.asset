@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb97ed7b5e0640489000daecce44cc8, type: 3}
+  m_Name: ShipBattle
+  m_EditorClassIdentifier: 
+  summary: The epic space battle continues
+  id: 0
+  options:
+  - eventObject: {fileID: 11400000}
+    oTag: 12
+    description: <actor> decides to try and outrun <subject>
+  - eventObject: {fileID: 11400000}
+    oTag: 1
+    description: Keep firing at the <subject>
+  - eventObject: {fileID: 11400000}
+    oTag: 3
+    description: Try and board the enemies and fight
+  - eventObject: {fileID: 11400000}
+    oTag: 11
+    description: '<actor> attempts to end things diplomatically
+
+'
+  subject: 
+  sitchTag: 9
+  sprite: {fileID: 21300000, guid: 1984b83b3e4208d4eb6e553e9ec75515, type: 3}

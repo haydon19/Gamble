@@ -41,6 +41,7 @@ public class HitboxManager : MonoBehaviour {
         if (collision.tag == "GoalFlag")
         {
             GameManager.instance.end = true;
+            GameManager.instance.ChangeScene("Scene1");
         }
     }
     /*

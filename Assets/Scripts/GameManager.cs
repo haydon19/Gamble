@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -25,8 +26,13 @@ public class GameManager : MonoBehaviour {
     {
         return spawnPoints[Random.Range(0, spawnPoints.Count)];
     }
-	// Update is called once per frame
-	void Update () {
+
+    public void ChangeScene(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+    // Update is called once per frame
+    void Update () {
         
 	}
 }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2199d965737d73b4cb645c859859e7f9, type: 3}
+  m_Name: EncounterAsteroid_Generic
+  m_EditorClassIdentifier: 
+  summary: An asteroid on a crash course with the ship shows up on the LDR
+  id: 0
+  options:
+  - eventObject: {fileID: 11400000}
+    oTag: 0
+    description: <actor> attempts to steer the ship out of danger
+  - eventObject: {fileID: 11400000}
+    oTag: 1
+    description: <shipname> fires its lasers at the asteroid
+  - eventObject: {fileID: 11400000}
+    oTag: 2
+    description: <actor> - "It might be risky, but i think i can land on this thing!"
+  subject: 
+  sitchTag: 5
+  sprite: {fileID: 21300000, guid: ffd0720e5a282f9478900f4399406feb, type: 3}
