@@ -23,6 +23,7 @@ public class PartyManagerPanel : MonoBehaviour {
     private void Start()
     {
 
+        gameObject.SetActive(false);
 
     }
     public void openPartyManagerPanel()
@@ -30,7 +31,6 @@ public class PartyManagerPanel : MonoBehaviour {
         
         gameObject.SetActive(!gameObject.activeSelf);
         gameObject.transform.position = new Vector3(0, 0, 0);
-        GameControllerScript.instance.pauseGame();
         if (gameObject.activeSelf)
         {
             openTab(0);

@@ -21,7 +21,7 @@ public class WallJump : MonoBehaviour {
         //Wall Sliding
         if(hit.collider != null)
         {
-            print("Hit collider " + hit.collider.name);
+
             
             //player.rb.gravityScale = 1.0f;
             if (Input.GetAxis("LHorizontal") == (int)player.direction)
@@ -32,7 +32,7 @@ public class WallJump : MonoBehaviour {
             if (Input.GetButtonDown("Jump"))
             {
 
-                print("getting there");
+
                 //movement.outsideForce = true;
                 player.direction = (Direction)(-(int)player.direction);
 

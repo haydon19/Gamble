@@ -98,7 +98,7 @@ public class InputController : MonoBehaviour {
         {
             //if we continue to hold the jump button, add a bit more force
             rb.AddForce(new Vector2(0, 10f));
-            print("thing");
+
         }
        
     }

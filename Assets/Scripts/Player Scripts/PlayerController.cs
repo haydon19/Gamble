@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
         renderer = GetComponent<AnimationController>();
         previousState = PlayerState.Idle;
         HealthBar.instance.UpdateHealth(health, maxHealth);
-        transform.position = GameManager.instance.GetSpawnPoint().transform.position;
+        transform.position = LevelManager.instance.GetSpawnPoint().transform.position;
     }
     void StateHandler()
     {

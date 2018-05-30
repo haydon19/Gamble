@@ -56,10 +56,10 @@ public class PartyManager  {
 
 
 
-    public void addPartyMember()
+    public void AddRandomPartyMember()
     {
         Character temp;
-        temp = new Character(GameControllerScript.instance.getRandomName(), GameData.instance.getRandomRace(), GameData.instance.getRandomGender(), GameData.instance.nextCharID(), Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10));
+        temp = new Character(GameData.instance.getRandomName(), GameData.instance.getRandomRace(), GameData.instance.getRandomGender(), GameData.instance.nextCharID(), Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10), Random.Range(0, 10));
         partyMembers.Add(temp);
         //CharacterContainer.instance.addCharacter(temp);
     }

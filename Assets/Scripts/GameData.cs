@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public enum Stat { Strength, Mind, Agility };
+
+public enum Resource { Fuel, Shields, Medicine };
+
+public enum LocationState { Space, Land };
 //This class holds all kind of data about the game
 //There are a bunch of functions and data creation that needs to be moved here
 public class GameData : MonoBehaviour {
-
+    public List<string> characterStatNames = new List<string> { "Strength", "Agility", "Mind" };
+    public List<string> resourceNames = new List<string> { "Fuel", "Ammo" };
     public static GameData instance;
     public Character player1;
     public List<Character> party = new List<Character>();
@@ -16,6 +22,12 @@ public class GameData : MonoBehaviour {
     public Dictionary<string, Sprite> eventSpriteDictionary;
     public Dictionary<string, Sprite> characterPortraitDictionary;
     public Dictionary<string, Module> modulePrototypes;
+    public Dictionary<string, Enemy> enemyDictionary;
+    public Dictionary<int, string> names;
+    List<string> enemyKeyList;
+    List<string> shipNames;
+
+
     public List<Situation> situationPrototypes;
     public Situation shipBattle;
 
@@ -40,6 +52,10 @@ public class GameData : MonoBehaviour {
         createGenderList();
         createTraitDictionary();
         createModulePrototypes();
+        //Create prototype lists, eventually this will just be importing from an XML file or something
+        createNameDictionary();
+        createEnemyPrototypes();
+        createShipNameList();
     }
 
     public Sprite getEventSprite(string eventName)
@@ -124,4 +140,64 @@ public class GameData : MonoBehaviour {
         return genders[Random.Range(0, genders.Count)];
     }
 
+    public void createNameDictionary()
+    {
+        names = new Dictionary<int, string>();
+        names.Add(0, "Steve");
+        names.Add(1, "Jerry");
+        names.Add(2, "Margret");
+        names.Add(3, "Jessica");
+        names.Add(4, "Trisha");
+        names.Add(5, "Bull");
+        names.Add(6, "Nathan");
+        names.Add(7, "Clarissa");
+
+    }
+
+    public void createEnemyPrototypes()
+    {
+        enemyDictionary = new Dictionary<string, Enemy>();
+        enemyDictionary.Add("Zombie", new Enemy("Zombie", 0, 8, 1, 2, 0));
+        enemyDictionary.Add("Feral Cat", new Enemy("Feral Cat", 0, 3, 4, 10, 0));
+        enemyDictionary.Add("Robot", new Enemy("Robot", 0, 6, 6, 2, 0));
+        enemyDictionary.Add("Alien", new Enemy("Alien", 0, 2, 10, 6, 0));
+        enemyDictionary.Add("Horse", new Enemy("Horse", 0, 5, 2, 7, 0));
+
+        enemyKeyList = new List<string>(enemyDictionary.Keys);
+    }
+
+    //When we want a new enemy, we get a random one using this function
+    public Enemy getRandomEnemy()
+    {
+        int rand = Random.Range(0, enemyKeyList.Count);
+        string randomKey = enemyKeyList[rand];
+        enemyDictionary[randomKey].ID += 1;
+        Enemy enemy = new Enemy(enemyDictionary[randomKey].Name, enemyDictionary[randomKey].ID, enemyDictionary[randomKey].getStat("Strength"), enemyDictionary[randomKey].getStat("Mind"), enemyDictionary[randomKey].getStat("Agility"), enemyDictionary[randomKey].getStat("Piloting"));
+        return enemy;
+    }
+
+    public void createShipNameList()
+    {
+        shipNames = new List<string>();
+        shipNames.Add("The Neverwhatever");
+        shipNames.Add("The Star Destroyer");
+        shipNames.Add("Her Majesty's Vessel");
+        shipNames.Add("The Qtaz'Tzor");
+        shipNames.Add("The Justice");
+        shipNames.Add("The Wanderer");
+        shipNames.Add("The Cheese Mechana");
+
+    }
+
+    public string getRandomName()
+    {
+        int r = Random.Range(0, 8);
+        return names[r];
+    }
+
+    public string getRandomShipName()
+    {
+
+        return shipNames[Random.Range(0, shipNames.Count)];
+    }
 }

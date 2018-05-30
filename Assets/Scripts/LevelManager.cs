@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
-    public static GameManager instance;
+public class LevelManager : MonoBehaviour {
+    public static LevelManager instance;
     public PlayerController player;
     public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     public FinishPoint goalFlag;
@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour {
         }
 
         instance = this;
-
-        
 	}
 	
     public SpawnPoint GetSpawnPoint()
@@ -27,12 +25,4 @@ public class GameManager : MonoBehaviour {
         return spawnPoints[Random.Range(0, spawnPoints.Count)];
     }
 
-    public void ChangeScene(string name)
-    {
-        SceneManager.LoadScene(name);
-    }
-    // Update is called once per frame
-    void Update () {
-        
-	}
 }

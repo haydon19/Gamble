@@ -9,12 +9,12 @@ public static class EventActions  {
     public static string getRandomStat()
     {
         
-        return GameControllerScript.instance.characterStatNames[Random.Range(0, GameControllerScript.instance.characterStatNames.Count)];
+        return GameData.instance.characterStatNames[Random.Range(0, GameData.instance.characterStatNames.Count)];
     }
 
 	public static string getRandomResource()
     {
-        return GameControllerScript.instance.resourceNames[Random.Range(0, GameControllerScript.instance.resourceNames.Count)];
+        return GameData.instance.resourceNames[Random.Range(0, GameData.instance.resourceNames.Count)];
     }
 	
 	public static void gainRandomResource(Situation activeEvent)
