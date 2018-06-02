@@ -119,7 +119,6 @@ public class GameControllerScript : MonoBehaviour {
 
     public void NewGame()
     {
-        Debug.Log("Loading New Game");
         gameActiveState = GameActiveState.Active;
         characterIndex = 0;
         LightYearsToEOU = 30;
@@ -131,8 +130,6 @@ public class GameControllerScript : MonoBehaviour {
             foreach (Character c in GameData.instance.party)
                 party.addPartyMember(c);
         }
-
-
 
         //Lets create some Characters, we'll randomize their starting stats (done in the character creation function)
         while (party.partyMembers.Count < 4)
@@ -149,7 +146,6 @@ public class GameControllerScript : MonoBehaviour {
     //function for quitting the game
     public void ExitGame() {
             Application.Quit();
-        Debug.Log("Game is exiting");
     }
 
     public Situation GetRandomSituation()

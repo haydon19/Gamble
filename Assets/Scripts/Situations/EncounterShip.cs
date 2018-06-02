@@ -11,18 +11,15 @@ public class EncounterShip : Situation
     }
 
     SpaceShip enemyShip;
+
     public override void Initialize()
     {
-
         characters = new List<Character>();
-        //This should be the enemy ship
-        //ship = new SpaceShip(GameControllerScript.instance.getRandomShipName(), 5);
         enemyShip = new SpaceShip(GameData.instance.getRandomShipName(), 5);
-        GameControllerScript.instance.enemyShip = this.enemyShip;
+        GameControllerScript.instance.enemyShip = enemyShip;
         subject = enemyShip.SubjectReference();
         ship = GameControllerScript.instance.party.ship;
         SetOptions();
-
         EventPanelScript.instance.SetEvent(this);
     }
 

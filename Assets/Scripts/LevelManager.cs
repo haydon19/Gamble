@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
     public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     public FinishPoint goalFlag;
     public bool end = false;
+    public float timeInLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -18,11 +19,20 @@ public class LevelManager : MonoBehaviour {
         }
 
         instance = this;
-	}
+
+        //set the level timer to 0
+        timeInLevel = 0;
+
+    }
 	
     public SpawnPoint GetSpawnPoint()
     {
         return spawnPoints[Random.Range(0, spawnPoints.Count)];
+    }
+
+    public void Update()
+    {
+        timeInLevel += Time.deltaTime;
     }
 
 }

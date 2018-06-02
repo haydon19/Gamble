@@ -10,7 +10,6 @@ public abstract class Situation :ScriptableObject {
     [SerializeField]
     [TextArea(5, 10)]
     protected string summary;
-
     protected string logEntry;
     [SerializeField]
     int id;
@@ -59,7 +58,6 @@ public abstract class Situation :ScriptableObject {
             summary = value;
         }
     }
-
 
     public int Id
     {
@@ -116,7 +114,6 @@ public abstract class Situation :ScriptableObject {
         }
     }
 
-
     public void LogSummary()
     {
         EventLog.instance.newLogItem(summary);
@@ -128,7 +125,6 @@ public abstract class Situation :ScriptableObject {
     }
 
 
-
     public virtual void SetSummary()
     {
         summary = "Default Summary";
@@ -138,10 +134,8 @@ public abstract class Situation :ScriptableObject {
     {
 
         characters = new List<Character>();
-
         SetOptions();
         SetSummary();
-
         LogSummary();
 
     }
@@ -160,7 +154,6 @@ public abstract class Situation :ScriptableObject {
         {
             c = GameControllerScript.instance.getRandomPartyMember();
             characters.Add(c);
-            //Options.Add(new Option(this, o, c, subject));
         }
 
         OptionMenuController.instance.AddOptionObjects(this);

@@ -138,8 +138,8 @@
     <Compile Include="Assets\Scripts\UI Scripts\TraitListPanel.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\TraitSelectionPanel.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UIManagerPlatformer.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UITraitObject.cs" />
-    <Compile Include="Assets\UIManagerPlatformer.cs" />
     <None Include="Assets\2d-extras-master\Assets\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Documents/GitHub/Gamble/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

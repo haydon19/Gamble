@@ -15,6 +15,6 @@ public class UIManagerPlatformer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(!LevelManager.instance.end)
-        timeText.text = "Time: " + Mathf.Round(Time.time);
+        timeText.text = "Time: " + Mathf.Round(LevelManager.instance.timeInLevel);
 	}
 }

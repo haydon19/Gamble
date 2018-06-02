@@ -336,7 +336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statName: {fileID: 0}
-  statValue: {fileID: 0}
+  statTextValue: {fileID: 0}
+  statValue: 0
   buttonContainer: {fileID: 0}
   incButton: {fileID: 0}
   decButton: {fileID: 0}
