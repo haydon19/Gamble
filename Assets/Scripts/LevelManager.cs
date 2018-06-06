@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
@@ -10,7 +12,7 @@ public class LevelManager : MonoBehaviour {
     public FinishPoint goalFlag;
     public bool end = false;
     public float timeInLevel;
-
+    public List<Tilemap> maps;
 	// Use this for initialization
 	void Start () {
         if (instance != null)
@@ -23,6 +25,7 @@ public class LevelManager : MonoBehaviour {
         //set the level timer to 0
         timeInLevel = 0;
 
+        SetToMap(Random.Range(0, maps.Count));
     }
 	
     public SpawnPoint GetSpawnPoint()
@@ -35,4 +38,13 @@ public class LevelManager : MonoBehaviour {
         timeInLevel += Time.deltaTime;
     }
 
+    public void SetToMap(int index)
+    {
+        foreach(Tilemap map in maps)
+        {
+            map.gameObject.SetActive(false);
+        }
+
+        maps[index].gameObject.SetActive(true);
+    }
 }

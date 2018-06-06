@@ -192,4 +192,5 @@ public class GameControllerScript : MonoBehaviour {
             currentSituation.Initialize();
         }
     }
+
 }
