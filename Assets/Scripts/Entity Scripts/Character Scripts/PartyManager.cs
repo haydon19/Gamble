@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*  Functionalities Included:
+ *      Adding(Random)/Removing Party Members
+ *      Changing the Ships Stats
+ *      Adding/Losing Fuel
+*/
 public class PartyManager  {
 
     //Party members

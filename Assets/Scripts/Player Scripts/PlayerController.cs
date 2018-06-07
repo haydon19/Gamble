@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum GroundState { Grounded, Airborn };
-public enum PlayerState { Idle, Walk, Jump, Falling, Crouch, Attacking, RangedAttack};
+public enum PlayerState { Idle, Walk, Jump, Falling, Crouch, Attacking, RangedAttack };
 public enum Direction { Left = -1, Right = 1 };
 
 
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     public PlayerState previousState;
     public float attackSpeed = 0.04f;
     public float attackCooldown = 0f;
+    public bool wallSliding = false;
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();

@@ -107,6 +107,8 @@ public class InputController : MonoBehaviour {
     {
         if (Input.GetAxis("LHorizontal") != 0)
         {
+
+
             //Unity's inspector has a better way to do this. But I like to see it for now.
             if (Input.GetAxis("LHorizontal") < 0)
             {
@@ -120,8 +122,17 @@ public class InputController : MonoBehaviour {
 
             }
 
+            if (player.wallSliding)
+            {
+                rb.velocity = new Vector2(0, -1.25f);
+
+            }
+            else
+            {
+                rb.velocity = new Vector2(player.walkSpeed * (int)player.direction, rb.velocity.y);
+
+            }
             //print("Y Velocity " + rb.velocity.y);
-            rb.velocity = new Vector2(player.walkSpeed * (int)player.direction, rb.velocity.y);
         }
     }
 
