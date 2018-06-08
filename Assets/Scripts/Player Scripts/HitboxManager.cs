@@ -26,8 +26,6 @@ public class HitboxManager : MonoBehaviour {
     public void OnCollisionEnter2D(Collision2D collision)
     {
 
-
-        
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +34,10 @@ public class HitboxManager : MonoBehaviour {
         {
             LevelManager.instance.end = true;
             GameControllerScript.instance.ChangeScene("Scene1");
+        }
+        if(collision.tag == "SpikeTrap")
+        {
+            print("Dead!");
         }
     }
     /*
