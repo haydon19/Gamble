@@ -67,6 +67,7 @@
     <Compile Include="Assets\2d-extras-master\Assets\Tilemap\Tiles\Rule Tile\Scripts\RuleTile.cs" />
     <Compile Include="Assets\2d-extras-master\Assets\Tilemap\Tiles\Terrain Tile\Scripts\TerrainTile.cs" />
     <Compile Include="Assets\2d-extras-master\Assets\Tilemap\Tiles\Weighted Random Tile\WeightedRandomTile.cs" />
+    <Compile Include="Assets\RangedAttack.cs" />
     <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\Background Scripts\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\Controllers\GameControllerScript.cs" />
