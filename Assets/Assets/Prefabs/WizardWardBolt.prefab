@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61600250318836648}
   - component: {fileID: 95063271810913302}
   - component: {fileID: 50354433486302908}
+  - component: {fileID: 114956367684435830}
   m_Layer: 0
   m_Name: WizardWardBolt
   m_TagString: Enemy
@@ -108,6 +109,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114336455239428182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735742088584816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536473ac8cb13a445b9d7bd83e0de9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1000
+  maxTime: 10
+--- !u!114 &114956367684435830
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

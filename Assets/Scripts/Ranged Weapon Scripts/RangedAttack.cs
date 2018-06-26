@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*TODO:
+     * 1. Target only shoots if players stands still in it's line of sight.
+     * 2. When this fires...it makes the thing it fires from disapear.
+     * 3. The bullet doesn't instantiate.
+      */
+
+
 public class RangedAttack : MonoBehaviour {
 
     public float fireRate = 15;
@@ -10,8 +17,8 @@ public class RangedAttack : MonoBehaviour {
     public Transform firePoint;
     public GameObject shot;
     public Transform target;
+    public Transform sightOrigin;
     public bool isDetected;
-    public bool shotPossible;
 
     private void Awake()
     {
@@ -26,7 +33,8 @@ public class RangedAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (fireRate == 0 && shotPossible == true)
+        //Shoot
+        if (fireRate == 0 && isDetected == true)
         {
             Shoot(target);
         }
@@ -36,70 +44,56 @@ public class RangedAttack : MonoBehaviour {
     {
         if (Time.time > timeToFire)
         {
+            print("Wizard Ward : Fire!");
             timeToFire = Time.time + fireRate;
             //GameObject clone =
             transform.LookAt(target);
+            //Initiates a bullet at target angle
             GameObject bullet = Instantiate(shot, firePoint.position, target.rotation);
         }
     }
 
+         
     private void OnTriggerStay2D(Collider2D collision)
     {
+        //If it finds a Player Object
         if (!collision.gameObject.CompareTag("Player"))
         {
             return;
         }
-
-        isDetected = true;
-        CheckSight(collision.gameObject);
+        //Acquire Player (Transform)Position
         target = collision.transform;
-        if (shotPossible == true)
-        {
-            Shoot(target);
-        }
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Player"))
-        {
-            return;
-        }
-        
-        isDetected = true;
-        CheckSight(collision.gameObject);
-        target = collision.transform;
+        CheckSight(target);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //If cannot find a Player : Do nothing.
         if (!collision.gameObject.CompareTag("Player"))
         {
             return;
         }
-
+        //Flushes target data.
         target = null;
         isDetected = false;
-        shotPossible = false;
     }
 
-    void CheckSight(GameObject target)
+    //Checks whether or not a straight line of sight can be established with a raycast to whatever player enters circular hitbox.
+    void CheckSight(Transform target)
     {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position,(target.transform.position - transform.position), out hit))
+        isDetected = Physics2D.Linecast(sightOrigin.position, target.position);
+        if(isDetected == true)
         {
-            if(hit.collider.gameObject.name == "Player")
-            {
-                shotPossible = true;
-                print("WizardWard can see player!");
-            }
-            else
-            {
-                shotPossible = false;
-                print("WizardWard is idle.");
-            }
+            Raycasting();
+            Shoot(target);
         }
     }
-
+    void Raycasting()
+    {
+        if (target != null)
+        {
+            Debug.DrawLine(sightOrigin.position, target.position, Color.red);
+        }
+    }
+        
 }
