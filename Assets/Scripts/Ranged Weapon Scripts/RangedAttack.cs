@@ -46,8 +46,7 @@ public class RangedAttack : MonoBehaviour {
         {
             print("Wizard Ward : Fire!");
             timeToFire = Time.time + fireRate;
-            //GameObject clone =
-            transform.LookAt(target);
+            //GameObject clone =    
             //Initiates a bullet at target angle
             GameObject bullet = Instantiate(shot, firePoint.position, target.rotation);
         }
