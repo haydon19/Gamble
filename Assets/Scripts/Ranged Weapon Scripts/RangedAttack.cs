@@ -11,7 +11,8 @@ using UnityEngine;
 
 public class RangedAttack : MonoBehaviour {
 
-    public float fireRate = 15;
+    public float fireRate = 5;
+    public float fireTime = 0;
     public float damage = 10;
     public float timeToFire = 0.5f;
     public Transform firePoint;
@@ -32,24 +33,33 @@ public class RangedAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        fireTime += Time.deltaTime;
         //Shoot
-        if (fireRate == 0 && isDetected == true)
+        if(fireTime >= fireRate)
         {
-            Shoot(target);
+            if (isDetected)
+            {
+                Shoot(target);
+
+            }
+
+            fireTime = 0;
         }
     }
 
     void Shoot(Transform target)
     {
-        if (Time.time > timeToFire)
-        {
             print("Wizard Ward : Fire!");
-            timeToFire = Time.time + fireRate;
-            //GameObject clone =    
-            //Initiates a bullet at target angle
-            GameObject bullet = Instantiate(shot, firePoint.position, target.rotation);
-        }
+        //GameObject clone =    
+        //Initiates a bullet at target angle
+        Vector3 vectorToTarget = target.position - firePoint.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+
+        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle), transform);
+
+
+        
+
     }
 
          
@@ -84,7 +94,6 @@ public class RangedAttack : MonoBehaviour {
         if(isDetected == true)
         {
             Raycasting();
-            Shoot(target);
         }
     }
     void Raycasting()

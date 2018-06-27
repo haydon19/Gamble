@@ -9,6 +9,7 @@ TagManager:
   - PlayerAttack
   - GoalFlag
   - SpikeTrap
+  - EnemySight
   layers:
   - Default
   - TransparentFX
