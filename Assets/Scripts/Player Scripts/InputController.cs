@@ -32,7 +32,7 @@ public class InputController : MonoBehaviour {
     {
          
         /*
-        if(Input.GetAxis("Vertical") < 0 && Input.GetButtonDown("Jump"))
+        if(Input.GetAxis("LVertical") < 0 && Input.GetButtonDown("Jump"))
         {
             foreach(BoxCollider2D collider in colliders)
             {
@@ -94,6 +94,7 @@ public class InputController : MonoBehaviour {
             //the initial jumping force
             Vector2 jumpingPower = new Vector2(0, player.jumpSpeed);
             rb.AddForce(jumpingPower, ForceMode2D.Impulse);
+            //player.groundState = GroundState.Airborn;
         } else if(Input.GetButton("Jump") && player.playerState == PlayerState.Jump) 
         {
             //if we continue to hold the jump button, add a bit more force

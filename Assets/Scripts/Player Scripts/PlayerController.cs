@@ -64,12 +64,18 @@ public class PlayerController : MonoBehaviour {
             if (rb.velocity.y > 0)
             {
                 playerState = PlayerState.Jump;
+                groundState = GroundState.Airborn;
 
             }
             else if (rb.velocity.y < 0)
             {
                 playerState = PlayerState.Falling;
 
+            }
+            
+            if(rb.velocity.y == 0 && groundState == GroundState.Airborn)
+            {
+                groundState = GroundState.Grounded;
             }
 
             if (groundState == GroundState.Grounded && rb.velocity.x != 0)
