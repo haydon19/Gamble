@@ -11,18 +11,12 @@ using UnityEngine;
 
 public class RangedAttack : MonoBehaviour {
 
-    public float fireRate = 5;
-    public float fireTime = 0;
-    public float damage = 10;
-    public float timeToFire = 0.5f;
     public Transform firePoint;
     public GameObject shot;
-    public Transform target;
-    public Transform sightOrigin;
-    public bool isDetected;
 
     private void Awake()
     {
+        //by default, the transform is the firepoint but we can set it later if we want
         firePoint = this.transform;
     }
 
@@ -33,21 +27,10 @@ public class RangedAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        fireTime += Time.deltaTime;
-        //Shoot
-        if(fireTime >= fireRate)
-        {
-            if (isDetected)
-            {
-                Shoot(target);
 
-            }
-
-            fireTime = 0;
-        }
     }
 
-    void Shoot(Transform target)
+    public void Shoot(Transform target)
     {
             print("Wizard Ward : Fire!");
         //GameObject clone =    
@@ -63,45 +46,6 @@ public class RangedAttack : MonoBehaviour {
     }
 
          
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //If it finds a Player Object
-        if (!collision.gameObject.CompareTag("Player"))
-        {
-            return;
-        }
-        //Acquire Player (Transform)Position
-        target = collision.transform;
-        CheckSight(target);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //If cannot find a Player : Do nothing.
-        if (!collision.gameObject.CompareTag("Player"))
-        {
-            return;
-        }
-        //Flushes target data.
-        target = null;
-        isDetected = false;
-    }
-
-    //Checks whether or not a straight line of sight can be established with a raycast to whatever player enters circular hitbox.
-    void CheckSight(Transform target)
-    {
-        isDetected = Physics2D.Linecast(sightOrigin.position, target.position);
-        if(isDetected == true)
-        {
-            Raycasting();
-        }
-    }
-    void Raycasting()
-    {
-        if (target != null)
-        {
-            Debug.DrawLine(sightOrigin.position, target.position, Color.red);
-        }
-    }
+    
         
 }

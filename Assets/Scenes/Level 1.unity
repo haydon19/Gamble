@@ -357,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232275779}
   - component: {fileID: 232275780}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackTrigger
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 359662673}
   - component: {fileID: 359662669}
   - component: {fileID: 359662677}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3171,7 +3171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 657044051}
   - component: {fileID: 657044052}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ArrowHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6815,7 +6815,7 @@ GameObject:
   - component: {fileID: 912239201}
   - component: {fileID: 912239202}
   - component: {fileID: 912239203}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6986,7 +6986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1014807206}
   - component: {fileID: 1014807207}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HitboxCrouching
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7096,7 +7096,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1074317095}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7125,7 +7125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1159742822}
   - component: {fileID: 1159742823}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HitboxStanding
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7329,11 +7329,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4464111875748986, guid: dcc5099bce85c4e43aa341fd885668ff, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.93
+      value: -1.66
       objectReference: {fileID: 0}
     - target: {fileID: 4464111875748986, guid: dcc5099bce85c4e43aa341fd885668ff, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.01
+      value: 4.45
       objectReference: {fileID: 0}
     - target: {fileID: 4464111875748986, guid: dcc5099bce85c4e43aa341fd885668ff, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7665,7 +7665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755273058}
   - component: {fileID: 1755273059}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7838,6 +7838,7 @@ GameObject:
   - component: {fileID: 1833947168}
   - component: {fileID: 1833947167}
   - component: {fileID: 1833947171}
+  - component: {fileID: 1833947172}
   - component: {fileID: 1833947170}
   m_Layer: 0
   m_Name: WizardWard
@@ -7934,15 +7935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a0e30314df2474b823b2357e254745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 2
-  fireTime: 0
-  damage: 10
-  timeToFire: 0.5
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1833947169}
   shot: {fileID: 1735742088584816, guid: 62fddf0833c015343b881347350b15a3, type: 2}
-  target: {fileID: 359662668}
-  sightOrigin: {fileID: 1548158316}
-  isDetected: 0
 --- !u!58 &1833947171
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7958,6 +7952,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
+--- !u!114 &1833947172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1833947166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7eba592744516f4d9f0aa37031a3cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 1
+  fireTime: 0
+  rangedAttack: {fileID: 1833947170}
+  sightOrigin: {fileID: 1548158316}
+  target: {fileID: 0}
+  isDetected: 0
 --- !u!1 &1903182175
 GameObject:
   m_ObjectHideFlags: 0

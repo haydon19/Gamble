@@ -2,27 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+[RequireComponent(typeof(MovementComponent))]
+public class EnemyBehaviour : MonoBehaviour {
 
     public int health = 10;
-    public float turnTime = 1f;
-    public float timer = 0;
     public int dir = 1;
     public PlayerController target = null;
     public bool knockback = false;
 
-    Rigidbody2D rb;
+    protected MovementComponent moveComponent;
+    protected Rigidbody2D rb;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
         rb = GetComponent<Rigidbody2D>();
-        turnTime = Random.Range(1, 5);
+        moveComponent = GetComponent<MovementComponent>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        UpdateMovement();
-        CheckForTarget();
 	}
 
 
@@ -48,37 +46,21 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-    public void UpdateMovement()
-    {
-        if(timer < turnTime)
-        {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            timer = 0;
-            dir *= -1;
-            knockback = false;
-        }
-
-        if(!knockback)
-        rb.velocity = new Vector2(2*dir,rb.velocity.y);
-        //rb.AddForce(new Vector2(6 * -dir, 0));
-
-        if(target != null && target.gameObject.transform.position.y > transform.position.y)
-        {
-           // rb.AddForce(new Vector2(0, 4), ForceMode2D.Impulse);
-        }
-    }
 
     public void CheckForTarget()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left * -dir, 10);
+        int layerMask = 1 << 10;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left * -dir, 10, layerMask);
         Debug.DrawRay(transform.position, Vector2.left * -dir * 10, Color.green);
-  
+
+
         if (hit && hit.collider.tag == "Player")
         {
+            Debug.Log("Player Sighted");
             target = hit.collider.transform.GetComponentInParent<PlayerController>();
+        } else
+        {
+            target = null;
         }
         
 

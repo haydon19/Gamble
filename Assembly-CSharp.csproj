@@ -80,7 +80,10 @@
     <Compile Include="Assets\Scripts\Entity Scripts\Character Scripts\CharacterTrait.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Character Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Character Scripts\PartyManager.cs" />
-    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\EnemyBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\MovementComponent.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\Slime.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\TurrentBehaviour.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Ship Scripts\SpaceShip.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\StatBonus.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Stats.cs" />

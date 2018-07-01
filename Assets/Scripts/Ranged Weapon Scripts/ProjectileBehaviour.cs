@@ -12,7 +12,7 @@ public class ProjectileBehaviour : MonoBehaviour {
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.right * 10,ForceMode2D.Impulse);
+        rb.AddForce(transform.right * 10, ForceMode2D.Impulse);
 
 	}
 	
@@ -44,7 +44,7 @@ public class ProjectileBehaviour : MonoBehaviour {
         if (collision.tag == "Enemy")
         {
             //print("Enemy hit: Projectile Script");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
     
