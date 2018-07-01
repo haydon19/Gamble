@@ -27,6 +27,15 @@ public class Slime : EnemyBehaviour {
         {
             timer = 0;
             dir *= -1;
+            if (dir < 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+
             knockback = false;
         }
 
