@@ -38,6 +38,7 @@ public class RangedAttack : MonoBehaviour {
         }
     }
 
+    //given a target
     public void Shoot(Transform target)
     {
         //If it's on cooldown, we can't use it so return
@@ -59,7 +60,24 @@ public class RangedAttack : MonoBehaviour {
 
     }
 
-         
-    
-        
+    //given an angle
+    public void Shoot(float angle)
+    {
+        //If it's on cooldown, we can't use it so return
+        if (onCooldown)
+        {
+            //print("On Cooldown");
+
+            return;
+        }
+
+        onCooldown = true;
+        //print("Fire!");
+        //Initiates a bullet at target angle
+        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle), transform);
+
+
+    }
+
+
 }

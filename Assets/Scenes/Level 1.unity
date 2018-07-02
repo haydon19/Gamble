@@ -7787,12 +7787,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656170368f45cb042999670662e53c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0
   damage: 10
-  timeToFire: 0.5
   firePoint: {fileID: 0}
-  shot: {fileID: 1164230786148296, guid: f59d16e7e06f6e44f83104194189e041, type: 2}
-  player: {fileID: 0}
 --- !u!1001 &931865292
 Prefab:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public enum Direction { Left = -1, Right = 1 };
 
 
 public class PlayerController : MonoBehaviour {
+    MovementComponent movementComponent;
+    RangedWeapon rangedWeapon;
     public Rigidbody2D rb;
 
 
@@ -23,12 +25,18 @@ public class PlayerController : MonoBehaviour {
     public float attackCooldown = 0f;
     public bool wallSliding = false;
 
+    /* States */
+    bool isIdle, isWalking, isJumping, isFalling, isCrouching, isAttacking, isRangedAttacking;
+    bool isGrounded, isAirborn;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         previousState = PlayerState.Idle;
         HealthBar.instance.UpdateHealth(health, maxHealth);
         transform.position = LevelManager.instance.GetSpawnPoint().transform.position;
+        movementComponent = gameObject.AddComponent<MovementComponent>();
+        rangedWeapon = GetComponentInChildren<RangedWeapon>();
     }
 
     // Update is called once per frame
@@ -42,6 +50,7 @@ public class PlayerController : MonoBehaviour {
                 attackCooldown = 0;
             }
         }
+
         StateHandler();
         //Sets the players state based on its movement
         HandleInput();
@@ -55,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 
         //By default the player is always idle or falling (unless they are attacking)
         //When we handle the input afterwards, the proper state will be set
-        if(groundState == GroundState.Grounded)
+        if(groundState == GroundState.Grounded && playerState != PlayerState.Jump)
         {
             playerState = PlayerState.Idle;
         } else
@@ -109,7 +118,7 @@ public class PlayerController : MonoBehaviour {
             {
                 rb.velocity = new Vector2(walkSpeed * (int)direction, rb.velocity.y);
                 
-                if(groundState == GroundState.Grounded)
+                if(playerState != PlayerState.Jump && playerState != PlayerState.Falling)
                 playerState = PlayerState.Walk;
             }
         }
@@ -119,7 +128,8 @@ public class PlayerController : MonoBehaviour {
         {
             if (groundState == GroundState.Grounded && playerState != PlayerState.Jump)
             {
-                Debug.Log("being called");
+
+                Debug.Log("being called " + playerState);
                 //the initial jumping force
                 Vector2 jumpingPower = new Vector2(0, jumpSpeed);
                 rb.AddForce(jumpingPower, ForceMode2D.Impulse);
@@ -140,16 +150,18 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetAxis("RHorizontal") != 0 || Input.GetAxis("RVertical") != 0 && playerState != PlayerState.Attacking)
         {
             playerState = PlayerState.RangedAttack;
+            Vector2 input = new Vector2(Input.GetAxis("RHorizontal"), Input.GetAxis("RVertical"));
+            rangedWeapon.UpdateAngle(input);
             //print("PlayerState: RangedAttack");
             if (Input.GetButtonDown("Fire"))
             {
-                print("Shot Fired!");
+                rangedWeapon.Shoot();
             }
 
         }
 
         /*Attacking*/
-        if (Input.GetButtonDown("Attack") && attackCooldown <= 0 && playerState != PlayerState.RangedAttack)
+        if (Input.GetButtonDown("Attack") && attackCooldown <= 0 && playerState != PlayerState.RangedAttack && playerState != PlayerState.Attacking)
         {
             attackCooldown = attackSpeed;
             previousState = playerState;

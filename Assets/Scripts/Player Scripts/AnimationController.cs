@@ -22,6 +22,7 @@ public class AnimationController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         animator.SetInteger("PlayerState", (int)player.playerState);
+
         if (player.direction == Direction.Right)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
