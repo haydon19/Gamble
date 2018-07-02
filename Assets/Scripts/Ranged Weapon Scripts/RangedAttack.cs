@@ -43,13 +43,13 @@ public class RangedAttack : MonoBehaviour {
         //If it's on cooldown, we can't use it so return
         if (onCooldown)
         {
-            print("On Cooldown");
+            //print("On Cooldown");
 
             return;
         }
 
         onCooldown = true;
-        print("Fire!");
+        //print("Fire!");
         //Initiates a bullet at target angle
         Vector3 vectorToTarget = target.position - firePoint.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;

@@ -22,7 +22,7 @@ public class TurrentBehaviour : EnemyBehaviour {
         {
             if (CheckLineOfSight(target))
             {
-                Debug.Log("Shooting at " + target.tag);
+                //Debug.Log("Shooting at " + target.tag);
                 rangedAttack.Shoot(target);
             }
 
@@ -36,7 +36,7 @@ public class TurrentBehaviour : EnemyBehaviour {
         {
             return;
         }
-        Debug.Log("Player in range");
+        //Debug.Log("Player in range");
 
         //Acquire Player (Transform)Position
         target = collision.transform;
@@ -49,7 +49,7 @@ public class TurrentBehaviour : EnemyBehaviour {
         {
             return;
         }
-        Debug.Log("Player in range");
+        //Debug.Log("Player in range");
         target = null;
     }
 

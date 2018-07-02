@@ -15,15 +15,12 @@ public class InputController : MonoBehaviour {
 
     Rigidbody2D rb;
     PlayerController player;
-    List<BoxCollider2D> colliders;
 
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<PlayerController>();
-        colliders = new List<BoxCollider2D>();
-        colliders.AddRange(GetComponentsInChildren<BoxCollider2D>());
     }
 
     // Update is called once per frame

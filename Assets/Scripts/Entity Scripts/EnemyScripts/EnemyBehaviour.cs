@@ -28,12 +28,12 @@ public class EnemyBehaviour : MonoBehaviour {
         Debug.DrawRay(transform.position, Vector2.left * -dir * 10, Color.green);
         if (hit)
         {
-            Debug.Log("Collided with " + hit.collider.tag);
+            //Debug.Log("Collided with " + hit.collider.tag);
         }
 
         if (hit && hit.collider.tag == "Player")
         {
-            Debug.Log("Player Sighted");
+            //Debug.Log("Player Sighted");
             target = hit.collider.transform;
         } else
         {
