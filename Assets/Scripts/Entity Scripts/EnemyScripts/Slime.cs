@@ -42,7 +42,7 @@ public class Slime : EnemyBehaviour {
         }
 
         if (!knockback)
-            moveComponent.MoveHorizontal(dir);
+            moveComponent.MoveHorizontal(dir*3);
         
 
         if (target != null)

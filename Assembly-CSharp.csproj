@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\GroundCheck.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\HitboxManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\InputController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\JumpComponent.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerCameraFollow.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\RangedWeapon.cs" />

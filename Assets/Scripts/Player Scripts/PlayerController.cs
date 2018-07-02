@@ -10,6 +10,7 @@ public enum Direction { Left = -1, Right = 1 };
 public class PlayerController : MonoBehaviour {
     MovementComponent movementComponent;
     RangedWeapon rangedWeapon;
+    JumpComponent jumpComponent;
     public Rigidbody2D rb;
 
 
@@ -17,7 +18,8 @@ public class PlayerController : MonoBehaviour {
     public float health = 20;
     public float maxHealth = 30;
     public float walkSpeed = 4;
-    public float jumpSpeed = 150;
+    public float jumpSpeed = 8;
+    public float maxJumpSpeed = 11;
     public GroundState groundState = GroundState.Grounded;
     public PlayerState playerState = PlayerState.Idle;
     public PlayerState previousState;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour {
         transform.position = LevelManager.instance.GetSpawnPoint().transform.position;
         movementComponent = gameObject.AddComponent<MovementComponent>();
         rangedWeapon = GetComponentInChildren<RangedWeapon>();
+        jumpComponent = GetComponent<JumpComponent>();
     }
 
     // Update is called once per frame
@@ -80,7 +83,10 @@ public class PlayerController : MonoBehaviour {
 
     void HandleInput()
     {
-
+        float leftInputX = Input.GetAxis("LHorizontal");
+        float leftInputY = Input.GetAxis("LVertical");
+        float rightInputX = Input.GetAxis("RHorizontal");
+        float rightInputY = Input.GetAxis("RVertical");
         //This all comes down to the order of operations
         //Getting that order correct will be key
 
@@ -92,18 +98,17 @@ public class PlayerController : MonoBehaviour {
         }
 
         /*WALKING*/
-        if (Input.GetAxis("LHorizontal") != 0 && playerState != PlayerState.Attacking)
+        if (leftInputX != 0 && playerState != PlayerState.Attacking)
         {
 
             //Unity's inspector has a better way to do this. But I like to see it for now.
-            if (Input.GetAxis("LHorizontal") < 0)
+            if (leftInputX < 0)
             {
                 direction = Direction.Left;
 
-
             }
 
-            if (Input.GetAxis("LHorizontal") > 0)
+            if (leftInputX > 0)
             {
                 direction = Direction.Right;
 
@@ -116,9 +121,9 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
-                rb.velocity = new Vector2(walkSpeed * (int)direction, rb.velocity.y);
-                
-                if(playerState != PlayerState.Jump && playerState != PlayerState.Falling)
+                movementComponent.MoveHorizontal((int)direction * walkSpeed);
+
+                if (playerState != PlayerState.Jump && playerState != PlayerState.Falling)
                 playerState = PlayerState.Walk;
             }
         }
@@ -131,18 +136,19 @@ public class PlayerController : MonoBehaviour {
 
                 Debug.Log("being called " + playerState);
                 //the initial jumping force
-                Vector2 jumpingPower = new Vector2(0, jumpSpeed);
-                rb.AddForce(jumpingPower, ForceMode2D.Impulse);
+                jumpComponent.Jump();
                 playerState = PlayerState.Jump;
                 //player.groundState = GroundState.Airborn;
             }
-            else if (playerState == PlayerState.Jump)
+            /*
+            else if (playerState == PlayerState.Jump && rb.velocity.y < maxJumpSpeed)
             {
                 //if we continue to hold the jump button, add a bit more force
-                rb.AddForce(new Vector2(0, 10f));
+                //movementComponent.AddToVertical(1);
                 //rb.
                 playerState = PlayerState.Jump;
             }
+            */
         }
         
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MovementComponent : MonoBehaviour {
 
-    public int speed = 2;
     Rigidbody2D rb;
     //this should probably keep track of the facing position
 
@@ -13,24 +12,27 @@ public class MovementComponent : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();    
     }
 
-    public void Move(Vector2 direction)
+    public void Move(Vector2 velocity)
     {
-        rb.velocity = direction * speed;
+        rb.velocity = velocity;
     }
 
-    public void MoveHorizontal(int direction)
+    public void MoveHorizontal(float speed)
     {
-        rb.velocity =  new Vector2(direction * speed, rb.velocity.y);
+        rb.velocity =  new Vector2(speed, rb.velocity.y);
     }
 
-    public void MoveVertical(int direction)
+    //Also know as jumping
+    public void MoveVertical(float speed)
     {
-        rb.velocity = new Vector2(rb.velocity.x, direction * speed);
+        rb.velocity = new Vector2(rb.velocity.x, speed);
 
     }
-    
-    public void Knockback(int direction)
+
+    public void AddToVertical(float speed)
     {
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + speed);
 
     }
+
 }

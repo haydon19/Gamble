@@ -22,6 +22,12 @@ public class RangedAttack : MonoBehaviour {
     {
         //by default, the transform is the firepoint but we can set it later if we want
         firePoint = this.transform;
+        
+    }
+
+    public void Initialize()
+    {
+        
     }
 
     void Update()
@@ -55,7 +61,7 @@ public class RangedAttack : MonoBehaviour {
         Vector3 vectorToTarget = target.position - firePoint.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
-        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle), transform);     
+        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle));     
 
 
     }
@@ -74,7 +80,8 @@ public class RangedAttack : MonoBehaviour {
         onCooldown = true;
         //print("Fire!");
         //Initiates a bullet at target angle
-        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle), transform);
+
+        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle));
 
 
     }
