@@ -3,33 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RangedAttack))]
-public class TurrentBehaviour : MonoBehaviour {
+public class TurrentBehaviour : EnemyBehaviour {
 
-    public float fireRate = 1;
-    public float fireTime = 0;
-    public RangedAttack rangedAttack;
+
     public Transform sightOrigin;
-    public Transform target;
-    public bool isDetected;
+    RangedAttack rangedAttack;
 
     // Use this for initialization
-    void Start () {
+    public override void Start () {
+        base.Start();
         rangedAttack = GetComponent<RangedAttack>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        fireTime += Time.deltaTime;
-        //Shoot
-        if (fireTime >= fireRate)
-        {
-            if (isDetected)
-            {
-                rangedAttack.Shoot(target);
+        rangedAttack.firePoint = sightOrigin;
+    }
 
+    private void Update()
+    {
+        if(target != null)
+        {
+            if (CheckLineOfSight(target))
+            {
+                Debug.Log("Shooting at " + target.tag);
+                rangedAttack.Shoot(target);
             }
 
-            fireTime = 0;
         }
     }
 
@@ -40,37 +36,46 @@ public class TurrentBehaviour : MonoBehaviour {
         {
             return;
         }
+        Debug.Log("Player in range");
+
         //Acquire Player (Transform)Position
         target = collision.transform;
-        CheckSight(target);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //If cannot find a Player : Do nothing.
+        //If it finds a Player Object
         if (!collision.gameObject.CompareTag("Player"))
         {
             return;
         }
-        //Flushes target data.
+        Debug.Log("Player in range");
         target = null;
-        isDetected = false;
     }
 
+
+
     //Checks whether or not a straight line of sight can be established with a raycast to whatever player enters circular hitbox.
-    void CheckSight(Transform target)
+    bool CheckLineOfSight(Transform target)
     {
-        isDetected = Physics2D.Linecast(sightOrigin.position, target.position);
-        if (isDetected == true)
+        int layerMask = 1 << 0;
+        layerMask = ~layerMask;
+        Debug.DrawLine(sightOrigin.position, target.position, Color.red);
+
+        RaycastHit2D hit = Physics2D.Linecast(sightOrigin.position, target.position, layerMask);
+        if (hit)
         {
-            Raycasting();
+            Debug.Log("Collided with " + hit.collider.tag);
         }
-    }
-    void Raycasting()
-    {
-        if (target != null)
+
+        if (hit && hit.collider.tag == "Player")
         {
-            Debug.DrawLine(sightOrigin.position, target.position, Color.red);
+            return true;
         }
+
+        return false;
+        
+
     }
+
 }

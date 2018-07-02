@@ -10,9 +10,13 @@ using UnityEngine;
 
 
 public class RangedAttack : MonoBehaviour {
-
+    
+    //Should the cooldown go in here? Or does the entity keep track of that?
     public Transform firePoint;
-    public GameObject shot;
+    public GameObject shot; //Right now this is set up to shoot any object, might be worth exploring or just let it shoot "bullets"
+    public float cooldown = 1;
+    public float cooldownTime = 1;
+    public bool onCooldown = false;
 
     private void Awake()
     {
@@ -20,28 +24,38 @@ public class RangedAttack : MonoBehaviour {
         firePoint = this.transform;
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
+    void Update()
+    {
+        //Here we manage the cooldown / fire rate of the RangedAttack
+        if (onCooldown)
+        {
+            cooldownTime -= Time.deltaTime;
+            if(cooldownTime <= 0)
+            {
+                onCooldown = false;
+                cooldownTime = cooldown;
+            }
+        }
     }
 
     public void Shoot(Transform target)
     {
-            print("Wizard Ward : Fire!");
-        //GameObject clone =    
+        //If it's on cooldown, we can't use it so return
+        if (onCooldown)
+        {
+            print("On Cooldown");
+
+            return;
+        }
+
+        onCooldown = true;
+        print("Fire!");
         //Initiates a bullet at target angle
         Vector3 vectorToTarget = target.position - firePoint.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
-        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle), transform);
+        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle), transform);     
 
-
-        
 
     }
 

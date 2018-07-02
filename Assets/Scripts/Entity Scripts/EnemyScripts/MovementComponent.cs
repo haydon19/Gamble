@@ -6,6 +6,7 @@ public class MovementComponent : MonoBehaviour {
 
     public int speed = 2;
     Rigidbody2D rb;
+    //this should probably keep track of the facing position
 
     void Start()
     {
@@ -25,6 +26,11 @@ public class MovementComponent : MonoBehaviour {
     public void MoveVertical(int direction)
     {
         rb.velocity = new Vector2(rb.velocity.x, direction * speed);
+
+    }
+    
+    public void Knockback(int direction)
+    {
 
     }
 }
