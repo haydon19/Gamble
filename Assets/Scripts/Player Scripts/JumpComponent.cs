@@ -7,10 +7,15 @@ public class JumpComponent : MonoBehaviour {
     [Range(1, 10)]
     public float jumpVelocity;
 
+    public float jumpAdd = 10;
+    public float maxAddTime = .5f;
+    public float addTime = 0;
+
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
     Rigidbody2D rb;
+    public bool jumping = false;
 
     private void Awake()
     {
@@ -18,20 +23,38 @@ public class JumpComponent : MonoBehaviour {
     }
     // Update is called once per frame
     public void Jump () {
-        GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
-	}
+        
+        rb.velocity = Vector2.up * jumpVelocity;
+        jumping = true;
+        addTime = 0;
 
-    /*
-    private void Update()
+    }
+
+    public void AddToJump()
     {
-        if(rb.velocity.y < 0)
+        if(jumping && addTime < maxAddTime)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-
-        }else if(rb.velocity.y > 0)
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            addTime += Time.deltaTime;
+            rb.velocity += Vector2.up * jumpAdd * Time.deltaTime;
         }
     }
-    */
+    
+    
+    private void Update()
+    {
+        
+        if (jumping)
+        {
+            
+
+            if(rb.velocity.y <= 0)
+            {
+                jumping = false;
+            }
+
+
+        }
+        
+    }
+    
 }

@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour {
     public bool wallSliding = false;
 
     /* States */
+    //Technically, you cannot be both IDLE and WALKING, or IDLE and JUMPING
+    //isWalking might need to be renamed to isMoving
     bool isIdle, isWalking, isJumping, isFalling, isCrouching, isAttacking, isRangedAttacking;
     bool isGrounded, isAirborn;
 
@@ -131,6 +133,7 @@ public class PlayerController : MonoBehaviour {
         /*JUMPING*/
         if (Input.GetButton("Jump"))
         {
+            //Initial Jump
             if (groundState == GroundState.Grounded && playerState != PlayerState.Jump)
             {
 
@@ -140,15 +143,20 @@ public class PlayerController : MonoBehaviour {
                 playerState = PlayerState.Jump;
                 //player.groundState = GroundState.Airborn;
             }
-            /*
-            else if (playerState == PlayerState.Jump && rb.velocity.y < maxJumpSpeed)
+            else if (playerState == PlayerState.Jump)
             {
                 //if we continue to hold the jump button, add a bit more force
                 //movementComponent.AddToVertical(1);
-                //rb.
+                jumpComponent.AddToJump();
                 playerState = PlayerState.Jump;
             }
-            */
+            
+        } else
+        {
+            if (jumpComponent.jumping)
+            {
+                jumpComponent.jumping = false;
+            }
         }
         
 
