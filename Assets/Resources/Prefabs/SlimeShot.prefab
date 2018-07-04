@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50785560218546112}
   - component: {fileID: 114331590918250680}
   - component: {fileID: 61927661293574352}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SlimeShot
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public enum GroundState { Grounded, Airborn };
 public enum PlayerState { Idle, Walk, Jump, Falling, Crouch, Attacking, RangedAttack };
+//The Player is either moving or is idle
+//Crouch is a subtype of being idle
+public enum MovementState { Idle, Moving };
 public enum Direction { Left = -1, Right = 1 };
 
 
@@ -30,7 +33,12 @@ public class PlayerController : MonoBehaviour {
     /* States */
     //Technically, you cannot be both IDLE and WALKING, or IDLE and JUMPING
     //isWalking might need to be renamed to isMoving
-    bool isIdle, isWalking, isJumping, isFalling, isCrouching, isAttacking, isRangedAttacking;
+    //Falling is any kind of movement in the air when not jumping
+    //Either Idle or Moving
+    public MovementState movementState = MovementState.Idle;
+    public bool isJumping, isCrouching, isAttacking;
+
+    //This might be uneccesary, you probably can never be both
     bool isGrounded, isAirborn;
 
     // Use this for initialization
@@ -64,6 +72,16 @@ public class PlayerController : MonoBehaviour {
 
     void StateHandler()
     {
+        //Check whether the player is moving or not, and set our movestate
+        if(rb.velocity.magnitude > 0)
+        {
+            movementState = MovementState.Moving; 
+        } else
+        {
+            movementState = MovementState.Idle;
+
+        }
+
         if (playerState == PlayerState.Attacking || playerState == PlayerState.RangedAttack)
             return;
 
@@ -93,7 +111,7 @@ public class PlayerController : MonoBehaviour {
         //Getting that order correct will be key
 
         /*Crouch*/
-        if (Input.GetAxis("LVertical") < -0.5 && groundState == GroundState.Grounded && playerState != PlayerState.Attacking)
+        if (leftInputY < -0.5 && groundState == GroundState.Grounded && playerState != PlayerState.Attacking)
         {
             playerState = PlayerState.Crouch;
             rb.velocity = new Vector2(0, 0);
@@ -161,10 +179,10 @@ public class PlayerController : MonoBehaviour {
         
 
         /*Ranged Attacking*/
-        if (Input.GetAxis("RHorizontal") != 0 || Input.GetAxis("RVertical") != 0 && playerState != PlayerState.Attacking)
+        if (rightInputX != 0 || rightInputY != 0 && playerState != PlayerState.Attacking)
         {
             playerState = PlayerState.RangedAttack;
-            Vector2 input = new Vector2(Input.GetAxis("RHorizontal"), Input.GetAxis("RVertical"));
+            Vector2 input = new Vector2(rightInputX, rightInputY);
             rangedWeapon.UpdateAngle(input);
             //print("PlayerState: RangedAttack");
             if (Input.GetButtonDown("Fire"))

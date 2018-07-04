@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95063271810913302}
   - component: {fileID: 50354433486302908}
   - component: {fileID: 114956367684435830}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WizardWardBolt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
