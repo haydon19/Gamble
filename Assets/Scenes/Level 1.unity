@@ -685,10 +685,14 @@ MonoBehaviour:
   maxJumpSpeed: 11
   groundState: 0
   playerState: 0
-  previousState: 0
-  attackSpeed: 0.04
+  attackSpeed: 0.2
   attackCooldown: 0
-  wallSliding: 0
+  isWallSlide: 0
+  movementState: 0
+  isJumping: 0
+  isCrouching: 0
+  isAttacking: 0
+  isAiming: 0
 --- !u!95 &359662672
 Animator:
   serializedVersion: 3
@@ -7716,7 +7720,6 @@ GameObject:
   m_Component:
   - component: {fileID: 912239200}
   - component: {fileID: 912239201}
-  - component: {fileID: 912239202}
   - component: {fileID: 912239203}
   m_Layer: 10
   m_Name: Rogue_Pistol
@@ -7784,18 +7787,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &912239202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 912239199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e139528f343e1914ba5cf20c95ec025f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 359662671}
 --- !u!114 &912239203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8541,9 +8532,9 @@ MonoBehaviour:
   dir: 1
   target: {fileID: 0}
   knockback: 0
-  speed: 1
-  width: 4
-  height: 2
+  speed: 0.2
+  width: 16
+  height: 8
 --- !u!1 &1698188276
 GameObject:
   m_ObjectHideFlags: 0

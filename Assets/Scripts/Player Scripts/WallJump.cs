@@ -27,7 +27,7 @@ public class WallJump : MonoBehaviour {
         if (hit.collider != null && player.groundState != GroundState.Grounded)
         {
 
-            player.wallSliding = true;
+            player.isWallSlide = true;
             if (Input.GetButtonDown("Jump"))
             {
                 //movement.outsideForce = true;
@@ -36,7 +36,7 @@ public class WallJump : MonoBehaviour {
             }
         } else
         {
-            player.wallSliding = false;
+            player.isWallSlide = false;
 
             //player.rb.gravityScale = 2f;
         }
