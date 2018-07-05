@@ -82,6 +82,9 @@
     <Compile Include="Assets\Scripts\Entity Scripts\Character Scripts\PartyManager.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\Dragon.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\EnemyBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\EnemySight.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\HitBoxEnemySight.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\LineEnemySight.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\MovementComponent.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\Slime.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\TurrentBehaviour.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\WallJump.cs" />
     <Compile Include="Assets\Scripts\Ranged Weapon Scripts\ProjectileBehaviour.cs" />
     <Compile Include="Assets\Scripts\Ranged Weapon Scripts\RangedAttack.cs" />
+    <Compile Include="Assets\Scripts\Ranged Weapon Scripts\WaveBullet.cs" />
     <Compile Include="Assets\Scripts\Situations\EncounterAsteroid.cs" />
     <Compile Include="Assets\Scripts\Situations\EncounterNPC.cs" />
     <Compile Include="Assets\Scripts\Situations\EncounterPlanet.cs" />

@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class ProjectileBehaviour : MonoBehaviour {
 
     // Use this for initialization
-    public float speed = 1000;
-    Rigidbody2D rb;
-    private BoxCollider2D activeHitbox;
+    public float speed = 10;
     public float maxTime = 10.0f;
+    Rigidbody2D rb;
 
-    void Start () {
+    public virtual void Start () {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.right * 10, ForceMode2D.Impulse);
-
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
+
+
+        transform.position += transform.right * Time.deltaTime * speed;
 
         //increase this gameobjects life counter
         maxTime -= Time.deltaTime;
@@ -34,11 +35,14 @@ public class ProjectileBehaviour : MonoBehaviour {
 
     }
 
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Ground")
         {
-            Destroy(gameObject);
+            print("Ground hit: Projectile Script");
+
+            Destroy(transform.gameObject);
         }
 
         if (collision.tag == "Enemy")
@@ -47,6 +51,7 @@ public class ProjectileBehaviour : MonoBehaviour {
             //Destroy(gameObject);
         }
     }
-    
+
+
 
 }

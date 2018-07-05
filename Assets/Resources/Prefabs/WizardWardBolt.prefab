@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4631017042317962}
   - component: {fileID: 212260871384083588}
+  - component: {fileID: 50632530114212650}
   - component: {fileID: 61600250318836648}
   - component: {fileID: 95063271810913302}
-  - component: {fileID: 50354433486302908}
   - component: {fileID: 114956367684435830}
   m_Layer: 12
   m_Name: WizardWardBolt
@@ -44,21 +44,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50354433486302908
+--- !u!50 &50632530114212650
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1735742088584816}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536473ac8cb13a445b9d7bd83e0de9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 700
+  speed: 12
   maxTime: 10
 --- !u!212 &212260871384083588
 SpriteRenderer:

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MovementComponent))]
 public class Slime : EnemyBehaviour {
 
+    protected MovementComponent moveComponent;
     public float fireRate = 1;
     public float fireTime = 0;
     public float turnTime = 1f;
@@ -12,13 +14,14 @@ public class Slime : EnemyBehaviour {
     public override void Start () {
         base.Start();
         turnTime = Random.Range(1, 5);
+        moveComponent = GetComponent<MovementComponent>();
     }
 
     // Update is called once per frame
     void Update () {
-        
+
         //Look for a target
-        CheckForTarget();
+        enemySight.CheckForTarget();
 
 
         if (timer < turnTime)
@@ -45,13 +48,13 @@ public class Slime : EnemyBehaviour {
             moveComponent.MoveHorizontal(dir*3);
         
 
-        if (target != null)
+        if (enemySight.target != null)
         {
             fireTime += Time.deltaTime;
             //Shoot
             if (fireTime >= fireRate)
             {
-            GetComponent<RangedAttack>().Shoot(target);
+            GetComponent<RangedAttack>().Shoot(enemySight.target);
 
 
                 fireTime = 0;

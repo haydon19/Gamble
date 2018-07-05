@@ -9,8 +9,8 @@ public class Dragon : EnemyBehaviour {
     public float speed;
     public float width;
     public float height;
-
     Vector3 startPos;
+    bool hadTarget = false;
 
     public override void Start()
     {
@@ -20,6 +20,14 @@ public class Dragon : EnemyBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        if(enemySight.target != null && enemySight.CheckLineOfSight())
+        {
+
+            GetComponent<RangedAttack>().Shoot(enemySight.target);
+
+        }
+        
         timeCounter += Time.deltaTime *speed;
 
         float xWave = (Mathf.Cos(timeCounter) * width);

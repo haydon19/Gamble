@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4555173562193162}
   - component: {fileID: 212110228475853458}
-  - component: {fileID: 50705707013641726}
   - component: {fileID: 61295057745961428}
   - component: {fileID: 114356293177246282}
+  - component: {fileID: 50983546078488844}
   m_Layer: 12
   m_Name: Bullet
   m_TagString: PlayerAttack
@@ -43,21 +43,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50705707013641726
+--- !u!50 &50983546078488844
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164230786148296}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536473ac8cb13a445b9d7bd83e0de9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 12
   maxTime: 10
 --- !u!212 &212110228475853458
 SpriteRenderer:
