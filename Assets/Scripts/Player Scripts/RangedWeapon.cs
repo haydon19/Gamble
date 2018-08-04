@@ -19,7 +19,7 @@ public class RangedWeapon : MonoBehaviour {
         rangedAttack = gameObject.AddComponent<RangedAttack>();
         rangedAttack.firePoint = firePoint;
         rangedAttack.cooldown = .5f;
-        rangedAttack.shot = Resources.Load("Prefabs/Bullet") as GameObject;
+        rangedAttack.shot = Resources.Load("Prefabs/Projectiles/Bullet") as GameObject;
     }
 
     // Update is called once per frame

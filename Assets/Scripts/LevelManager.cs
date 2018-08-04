@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour {
     public FinishPoint goalFlag;
     public bool end = false;
     public float timeInLevel;
-    public List<Tilemap> maps;
+    public List<Grid> maps; // a grid has multiple layers of tilemaps
 	// Use this for initialization
 	void Start () {
         if (instance != null)
@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour {
         //set the level timer to 0
         timeInLevel = 0;
 
+        Debug.Log("setting level");
         SetToMap(Random.Range(0, maps.Count));
     }
 	
@@ -40,11 +41,15 @@ public class LevelManager : MonoBehaviour {
 
     public void SetToMap(int index)
     {
-        foreach(Tilemap map in maps)
+        foreach(Grid map in maps)
         {
+            if (map.transform.parent != null)
+                map.transform.parent.gameObject.SetActive(false);
             map.gameObject.SetActive(false);
         }
 
+        if (maps[index].transform.parent != null)
+            maps[index].transform.parent.gameObject.SetActive(true);
         maps[index].gameObject.SetActive(true);
     }
 }

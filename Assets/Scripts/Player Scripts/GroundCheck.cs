@@ -6,35 +6,38 @@ using UnityEngine;
  *  If it is, 1: the object is grounded
  *  else      2: the object is airborne*/
 
+public enum GroundState { Grounded, Airborn };
+
+
 public class GroundCheck : MonoBehaviour {
 
 
-    public PlayerController player;
     public float distance = 1f;
-    bool grounded;
+    public GroundState groundState = GroundState.Grounded;
+    [SerializeField]
+    LayerMask layerMask;
 
     // Use this for initialization
     void Start () {
-        player = GetComponent<PlayerController>();
 
     }
 
     void Update()
     {
-        int layerMask = 1 << 8;
+        //int layerMask = 1 << 8;
         //Vector Emitting downward from attached object
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -1*Vector2.up, distance, layerMask);
 
         //Object is grounded if collider is activated.
         if (hit.collider != null)
         {
-            player.groundState = GroundState.Grounded;
+            groundState = GroundState.Grounded;
 
         }
         //Otherwise we are in the airborn.
         else
         {
-            player.groundState = GroundState.Airborn;
+            groundState = GroundState.Airborn;
 
         }
 

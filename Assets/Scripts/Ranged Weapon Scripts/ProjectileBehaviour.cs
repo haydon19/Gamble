@@ -50,6 +50,14 @@ public class ProjectileBehaviour : MonoBehaviour {
             //print("Enemy hit: Projectile Script");
             //Destroy(gameObject);
         }
+
+        if (collision.tag == "PlayerAttack")
+        {
+            print("Hit by player!");
+
+            transform.Rotate(new Vector3(0,0,180));
+            
+        }
     }
 
 

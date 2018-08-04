@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour {
 
     public int health = 10;
-    public int dir = 1;
     public bool knockback = false;
     public EnemySight enemySight;
     

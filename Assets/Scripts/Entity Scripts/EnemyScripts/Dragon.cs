@@ -9,6 +9,7 @@ public class Dragon : EnemyBehaviour {
     public float speed;
     public float width;
     public float height;
+    public float foundWidth, foundHeight;
     Vector3 startPos;
     bool hadTarget = false;
 
@@ -21,19 +22,31 @@ public class Dragon : EnemyBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if(enemySight.target != null && enemySight.CheckLineOfSight())
+        startPos = transform.position;
+        timeCounter += Time.deltaTime * speed;
+
+        float xWave = 0, yWave = 0;
+
+
+        if (enemySight.target != null && enemySight.CheckLineOfSight())
         {
 
             GetComponent<RangedAttack>().Shoot(enemySight.target);
+            xWave = (Mathf.Cos(timeCounter) * foundWidth);
+            yWave = (Mathf.Sin(timeCounter) * foundHeight);
+        } else 
+        {
+            timeCounter += Time.deltaTime * speed;
+
+            xWave = (Mathf.Cos(timeCounter) * width);
+            yWave = (Mathf.Sin(timeCounter) * height);
 
         }
-        
-        timeCounter += Time.deltaTime *speed;
 
-        float xWave = (Mathf.Cos(timeCounter) * width);
-        float yWave = (Mathf.Sin(timeCounter) * height);
 
-        if(yWave > 0)
+
+
+        if (yWave > 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         } else
@@ -42,10 +55,6 @@ public class Dragon : EnemyBehaviour {
 
         }
 
-        float x = startPos.x + xWave;
-        float y = startPos.y + yWave;
-        float z = startPos.z;
-
-        transform.position = new Vector2(x, y);
+        transform.position = transform.position + new Vector3(xWave, yWave, 0);
     }
 }

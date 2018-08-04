@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GroundState { Grounded, Airborn };
 public enum MovementState { Idle, Moving };
 
 public enum Direction { Left = -1, Right = 1 };
@@ -12,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     MovementComponent movementComponent;
     RangedWeapon rangedWeapon;
     JumpComponent jumpComponent;
+    GroundCheck groundCheck;
     public Rigidbody2D rb;
 
 
@@ -20,13 +20,25 @@ public class PlayerController : MonoBehaviour {
     public float maxHealth = 30;
     public float walkSpeed = 4;
     public float jumpSpeed = 8;
-    public GroundState groundState = GroundState.Grounded;
     public float attackSpeed = 0.2f;
     public float attackCooldown = 0f;
 
     /* States */
     public MovementState movementState = MovementState.Idle;
     public bool isJumping = false, isCrouching = false, isAttacking = false, isAiming = false, isWallSlide = false;
+
+    public GroundCheck GroundCheck
+    {
+        get
+        {
+            return groundCheck;
+        }
+
+        set
+        {
+            groundCheck = value;
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -36,6 +48,7 @@ public class PlayerController : MonoBehaviour {
         movementComponent = gameObject.AddComponent<MovementComponent>();
         rangedWeapon = GetComponentInChildren<RangedWeapon>();
         jumpComponent = GetComponent<JumpComponent>();
+        GroundCheck = GetComponent<GroundCheck>();
     }
 
     private void FixedUpdate()
@@ -92,7 +105,7 @@ public class PlayerController : MonoBehaviour {
 
         if (leftInputY < -0.5)
         {
-            if (groundState == GroundState.Grounded && !isAttacking)
+            if (GroundCheck.groundState == GroundState.Grounded && !isAttacking)
             {
                 isCrouching = true;
                 rb.velocity = new Vector2(0, 0);
@@ -126,6 +139,7 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
+                Debug.Log("calling");
                 movementComponent.MoveHorizontal((int)direction * walkSpeed);    
             }
         }
@@ -134,7 +148,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButton("Jump"))
         {
             //Initial Jump
-            if (groundState == GroundState.Grounded && !isJumping)
+            if (GroundCheck.groundState == GroundState.Grounded && !isJumping)
             {
                 //the initial jumping force
                 jumpComponent.Jump();

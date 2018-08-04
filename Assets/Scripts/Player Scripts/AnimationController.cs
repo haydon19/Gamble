@@ -37,7 +37,7 @@ public class AnimationController : MonoBehaviour {
         }
 
         
-        if(player.groundState == GroundState.Airborn)
+        if(player.GroundCheck.groundState == GroundState.Airborn)
         {
             if (!player.isJumping)
             {

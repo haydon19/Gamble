@@ -13,7 +13,7 @@ public class Collectable : MonoBehaviour
     void Start()
     {
         collider = GetComponent<Collider2D>();
-        collider.isTrigger = true;
+        //collider.isTrigger = true;
     }
 
 
@@ -21,8 +21,14 @@ public class Collectable : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            AddToInventory();
             Destroy(gameObject);
         }
 
+    }
+
+    public void AddToInventory()
+    {
+        InventoryManager.instance.AddItem(this);
     }
 }

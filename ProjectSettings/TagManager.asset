@@ -22,10 +22,10 @@ TagManager:
   - Ground
   - Background
   - Player
-  - Sight
+  - Enemy
   - Projectiles
-  - 
-  - 
+  - Sight
+  - PlayerAttack
   - 
   - 
   - 

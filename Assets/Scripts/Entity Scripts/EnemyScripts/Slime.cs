@@ -6,8 +6,8 @@ using UnityEngine;
 public class Slime : EnemyBehaviour {
 
     protected MovementComponent moveComponent;
-    public float fireRate = 1;
-    public float fireTime = 0;
+    GroundCheck groundCheck;
+    WallCheck wallCheck;
     public float turnTime = 1f;
     public float timer = 0;
     // Use this for initialization
@@ -15,14 +15,49 @@ public class Slime : EnemyBehaviour {
         base.Start();
         turnTime = Random.Range(1, 5);
         moveComponent = GetComponent<MovementComponent>();
+        groundCheck = groundCheck = GetComponent<GroundCheck>();
+        wallCheck = GetComponent<WallCheck>();
     }
+
+
+    private void FixedUpdate()
+    {
+
+        if (enemySight.target != null)
+        {
+
+            HasTargetBehaviour();
+        }
+        else
+        {
+            NoTargetBehaviour();
+        }
+
+    }
+
 
     // Update is called once per frame
     void Update () {
 
         //Look for a target
-        enemySight.CheckForTarget();
 
+
+        if (moveComponent.Direction < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+
+
+
+    }
+
+    void NoTargetBehaviour()
+    {
 
         if (timer < turnTime)
         {
@@ -31,49 +66,57 @@ public class Slime : EnemyBehaviour {
         else
         {
             timer = 0;
-            dir *= -1;
-            if (dir < 0)
-            {
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
-            else
-            {
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
+            moveComponent.Direction = (Direction)((int)moveComponent.Direction * -1);
 
-            knockback = false;
         }
 
-        if (!knockback)
-            moveComponent.MoveHorizontal(dir*3);
-        
+        if (groundCheck.groundState == GroundState.Grounded && !wallCheck.IsWall())
+            moveComponent.MoveHorizontal((int)moveComponent.Direction * 3);
+    }
 
-        if (enemySight.target != null)
+    void HasTargetBehaviour()
+    {
+
+        if (enemySight.target.position.x < transform.position.x)
         {
-            fireTime += Time.deltaTime;
-            //Shoot
-            if (fireTime >= fireRate)
-            {
+            moveComponent.Direction = Direction.Left;
+        }
+        else
+        {
+            moveComponent.Direction = Direction.Right;
+        }
+        //Shoot
+        if (enemySight.CheckLineOfSight())
+        {
             GetComponent<RangedAttack>().Shoot(enemySight.target);
 
-
-                fireTime = 0;
-            }
-
+        } else
+        {
+            MoveToTarget();
         }
+
+        
+    }
+
+    void MoveToTarget()
+    {
+        
+
+        moveComponent.MoveHorizontal((int)moveComponent.Direction * 3);
     }
 
     //There was problems with this in the genereal enemy code, due to the fact that the Turret was an enemy but didnt have a rigidbody
     //To fix this, we should either give enemies a collision manager, and then different types can managed their own types of collisions
     //or we seperate the enemies into collidable and non-collidable
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.tag == "PlayerAttack")
+
+        if (collider.tag == "PlayerAttack")
         {
             print("Hit by player!");
             //Hit from the right.
-            if (collision.transform.position.x < transform.position.x)
+            if ((int)moveComponent.Direction < 0)
             {
                 rb.velocity = new Vector2(10, 5);
                 print("Hit from left.");
@@ -86,6 +129,11 @@ public class Slime : EnemyBehaviour {
                 rb.velocity = new Vector2(-10, 5);
             }
             knockback = true;
+        }
+
+        if(collider.tag == "Ground")
+        {
+            knockback = false;
         }
     }
 }
