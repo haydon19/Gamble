@@ -15,6 +15,8 @@ public class WallCheck : MonoBehaviour {
     bool isWall;
     [SerializeField]
     Vector3 offset;
+    [SerializeField]
+    LayerMask layerMask;
 
     public bool IsWall
     {
@@ -37,18 +39,21 @@ public class WallCheck : MonoBehaviour {
 
     // Update is called once per frame
         void Update() {
-        int layerMask = 1 << 8;
-        //RayCast emitting horizontally from the attached object facing the direction they are moving or had last moved.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + offset, (Vector3.right * (int)movement.Direction) + offset, distance, layerMask);
 
+        //RayCast emitting horizontally from the attached object facing the direction they are moving or had last moved.
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + offset, (Vector3.right * (int)movement.Direction), distance, layerMask);
 
         if (hit)
         {
+            Debug.Log(gameObject.tag + " sees " + hit.collider.tag);
+
             //GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
             IsWall = true;
+
         } else
         {
             IsWall = false;
+            Debug.Log(gameObject.tag + " sees nothing");
 
         }
 
@@ -59,7 +64,7 @@ public class WallCheck : MonoBehaviour {
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(transform.position +offset, transform.position + Vector3.right * distance + offset);
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3.right * distance));
 
     }
 }

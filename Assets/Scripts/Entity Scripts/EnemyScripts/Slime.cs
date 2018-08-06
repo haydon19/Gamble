@@ -43,11 +43,11 @@ public class Slime : EnemyBehaviour {
 
         if (moveComponent.Direction < 0)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            transform.localScale = new Vector3(-1,1,1);
         }
         else
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
 
@@ -127,6 +127,7 @@ public class Slime : EnemyBehaviour {
 
                 rb.velocity = new Vector2(-10, 5);
             }
+            knockback = true;
         }
 
     }

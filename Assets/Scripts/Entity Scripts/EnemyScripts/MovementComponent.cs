@@ -6,6 +6,7 @@ using UnityEngine;
 public class MovementComponent : MonoBehaviour {
 
     Rigidbody2D rb;
+    [SerializeField]
     Direction direction;
 
     public Direction Direction

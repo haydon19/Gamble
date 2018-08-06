@@ -2326,6 +2326,9 @@ MonoBehaviour:
   distance: 0.3
   isWall: 0
   offset: {x: 0, y: 0, z: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &359662678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15512,6 +15515,10 @@ Prefab:
     - target: {fileID: 4647057209243154, guid: 8e948e3253950ff478a14ef8e465afb7, type: 2}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647057209243154, guid: 8e948e3253950ff478a14ef8e465afb7, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e948e3253950ff478a14ef8e465afb7, type: 2}
