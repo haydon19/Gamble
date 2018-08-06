@@ -59,7 +59,7 @@ public class WallCheck : MonoBehaviour {
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(transform.position + new Vector3(0,-0.25f,0), transform.position + Vector3.right * distance + new Vector3(0, -0.25f, 0) );
+        Gizmos.DrawLine(transform.position +offset, transform.position + Vector3.right * distance + offset);
 
     }
 }

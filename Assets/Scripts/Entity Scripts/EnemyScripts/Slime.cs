@@ -22,6 +22,7 @@ public class Slime : EnemyBehaviour {
 
     private void FixedUpdate()
     {
+        
 
         if (enemySight.target != null)
         {
@@ -38,8 +39,6 @@ public class Slime : EnemyBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-        //Look for a target
 
 
         if (moveComponent.Direction < 0)
@@ -128,12 +127,9 @@ public class Slime : EnemyBehaviour {
 
                 rb.velocity = new Vector2(-10, 5);
             }
-            knockback = true;
         }
 
-        if(collider.tag == "Ground")
-        {
-            knockback = false;
-        }
     }
+
+
 }
