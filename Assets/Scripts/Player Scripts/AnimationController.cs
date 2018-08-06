@@ -17,6 +17,7 @@ public class AnimationController : MonoBehaviour {
     // Use this for initialization
     void Start() {
         player = GetComponent<PlayerController>();
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
@@ -78,12 +79,12 @@ public class AnimationController : MonoBehaviour {
 
         //animator.SetInteger("PlayerState", (int)player.playerState);
         SetAnimationState();
-        if (player.direction == Direction.Right)
+        if (player.MovementComponent.Direction == Direction.Right)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (player.direction == Direction.Left)
+        if (player.MovementComponent.Direction == Direction.Left)
         {
             transform.rotation = Quaternion.Euler(0, 180f, 0);
 

@@ -11,8 +11,6 @@ public class JumpComponent : MonoBehaviour {
     public float maxAddTime = .5f;
     public float addTime = 0;
 
-    public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
 
     Rigidbody2D rb;
     public bool jumping = false;
@@ -28,6 +26,13 @@ public class JumpComponent : MonoBehaviour {
         jumping = true;
         addTime = 0;
 
+    }
+
+    public void JumpAway(Direction dir)
+    {
+        rb.velocity = (Vector2.up * jumpVelocity) + Vector2.right*jumpVelocity/2*(int)dir;
+        jumping = true;
+        addTime = 0;
     }
 
     public void AddToJump()

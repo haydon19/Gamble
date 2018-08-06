@@ -10,6 +10,8 @@ TagManager:
   - GoalFlag
   - SpikeTrap
   - EnemySight
+  - Projectile
+  - Items
   layers:
   - Default
   - TransparentFX
@@ -26,8 +28,8 @@ TagManager:
   - Projectiles
   - Sight
   - PlayerAttack
-  - 
-  - 
+  - ItemTrigger
+  - ItemBody
   - 
   - 
   - 
@@ -53,11 +55,17 @@ TagManager:
   - name: Decor
     uniqueID: 1601497047
     locked: 0
+  - name: HiddenItems
+    uniqueID: 667506461
+    locked: 0
   - name: Ground
     uniqueID: 820100115
     locked: 0
   - name: Enemies
     uniqueID: 1384496117
+    locked: 0
+  - name: Items
+    uniqueID: 3990694927
     locked: 0
   - name: Player
     uniqueID: 1443542813

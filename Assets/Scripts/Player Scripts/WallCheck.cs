@@ -11,9 +11,23 @@ public class WallCheck : MonoBehaviour {
     public float distance = 1f;
     Rigidbody2D rb;
     MovementComponent movement;
-    public float speed = 2f;
     [SerializeField]
     bool isWall;
+    [SerializeField]
+    Vector3 offset;
+
+    public bool IsWall
+    {
+        get
+        {
+            return isWall;
+        }
+
+        set
+        {
+            isWall = value;
+        }
+    }
 
     // Use this for initialization
     void Start() {
@@ -25,25 +39,20 @@ public class WallCheck : MonoBehaviour {
         void Update() {
         int layerMask = 1 << 8;
         //RayCast emitting horizontally from the attached object facing the direction they are moving or had last moved.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.25f, 0), (Vector3.right * (int)movement.Direction) + new Vector3(0, -0.25f, 0), distance, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + offset, (Vector3.right * (int)movement.Direction) + offset, distance, layerMask);
 
 
         if (hit)
         {
             //GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
-            isWall = true;
+            IsWall = true;
         } else
         {
-            isWall = false;
+            IsWall = false;
 
         }
 
 
-    }
-
-    public bool IsWall()
-    {
-        return isWall;
     }
 
     void OnDrawGizmos()

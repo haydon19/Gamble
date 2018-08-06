@@ -99,6 +99,8 @@
     <Compile Include="Assets\Scripts\GoalTracker.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
     <Compile Include="Assets\Scripts\Item Scripts\Collectable.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\Item Scripts\Sword.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Module.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\AnimationController.cs" />
@@ -107,7 +109,6 @@
     <Compile Include="Assets\Scripts\Player Scripts\JumpComponent.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerCameraFollow.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerWallCheck.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\RangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\WallCheck.cs" />
     <Compile Include="Assets\Scripts\Ranged Weapon Scripts\ProjectileBehaviour.cs" />

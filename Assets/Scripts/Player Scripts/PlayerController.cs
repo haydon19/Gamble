@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
 
 
-    public Direction direction = Direction.Right;
     public float health = 20;
     public float maxHealth = 30;
     public float walkSpeed = 4;
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 
     /* States */
     public MovementState movementState = MovementState.Idle;
-    public bool isJumping = false, isCrouching = false, isAttacking = false, isAiming = false, isWallSlide = false;
+    public bool isJumping = false, isCrouching = false, isAttacking = false, isAiming = false;
 
     public GroundCheck GroundCheck
     {
@@ -40,15 +39,44 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public WallCheck WallCheck
+    {
+        get
+        {
+            return wallCheck;
+        }
+
+        set
+        {
+            wallCheck = value;
+        }
+    }
+
+    public MovementComponent MovementComponent
+    {
+        get
+        {
+            return movementComponent;
+        }
+
+        set
+        {
+            movementComponent = value;
+        }
+    }
+
+    private WallCheck wallCheck;
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         HealthBar.instance.UpdateHealth(health, maxHealth);
         transform.position = LevelManager.instance.GetSpawnPoint().transform.position;
-        movementComponent = gameObject.AddComponent<MovementComponent>();
+        MovementComponent = gameObject.AddComponent<MovementComponent>();
         rangedWeapon = GetComponentInChildren<RangedWeapon>();
         jumpComponent = GetComponent<JumpComponent>();
         GroundCheck = GetComponent<GroundCheck>();
+        WallCheck = GetComponent<WallCheck>();
+
     }
 
     private void FixedUpdate()
@@ -124,15 +152,15 @@ public class PlayerController : MonoBehaviour {
             //Consider moving the direction variable into movement component
             if (leftInputX < 0)
             {
-                direction = Direction.Left;
+                MovementComponent.Direction = Direction.Left;
             }
 
             if (leftInputX > 0)
             {
-                direction = Direction.Right;
+                MovementComponent.Direction = Direction.Right;
             }
 
-            if (isWallSlide)
+            if (WallCheck.IsWall)
             {
                 //Moving into the wall sticks
                 rb.velocity = new Vector2(0, -1.25f);
@@ -140,26 +168,30 @@ public class PlayerController : MonoBehaviour {
             else
             {
                 Debug.Log("calling");
-                movementComponent.MoveHorizontal((int)direction * walkSpeed);    
+                MovementComponent.MoveHorizontal((int)MovementComponent.Direction * walkSpeed);    
             }
         }
 
-        /*JUMPING*/
-        if (Input.GetButton("Jump"))
+        if (Input.GetButtonDown("Jump") && !isJumping)
         {
+            if (WallCheck.IsWall)
+            {
+                MovementComponent.Direction = (Direction)(-(int)MovementComponent.Direction);
+                jumpComponent.JumpAway(MovementComponent.Direction);
+                isJumping = true;
+            }
             //Initial Jump
             if (GroundCheck.groundState == GroundState.Grounded && !isJumping)
             {
                 //the initial jumping force
                 jumpComponent.Jump();
                 isJumping = true;
-                
+
             }
-            else if (isJumping)
-            {
-                //if we continue to hold the jump button, add a bit more force
-                jumpComponent.AddToJump();
-            }
+        } else if (Input.GetButton("Jump") && isJumping) {
+
+            //if we continue to hold the jump button, add a bit more force
+                jumpComponent.AddToJump(); 
             
         } else
         {

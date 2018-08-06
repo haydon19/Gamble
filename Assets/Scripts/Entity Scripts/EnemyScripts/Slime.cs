@@ -70,7 +70,7 @@ public class Slime : EnemyBehaviour {
 
         }
 
-        if (groundCheck.groundState == GroundState.Grounded && !wallCheck.IsWall())
+        if (groundCheck.groundState == GroundState.Grounded && !wallCheck.IsWall)
             moveComponent.MoveHorizontal((int)moveComponent.Direction * 3);
     }
 

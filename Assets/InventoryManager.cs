@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour {
 
-    public static InventoryManager instance;
-    List<InventoryIconScript> collectables;
+    Dictionary<string, InventoryIconScript> collectables;
     [SerializeField]
     GameObject inventory;
     bool tucked;
+    Vector2 startingPos;
 
 
     private void OnMouseOver()
@@ -24,14 +24,14 @@ public class InventoryManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetButtonDown("Menu"))
         {
             if (tucked)
             {
-                transform.position = new Vector3(0, 0);
+                transform.localPosition = startingPos + new Vector2(0, 175);
                 tucked = !tucked;
             }else{
-                transform.position = new Vector3(0, -160);
+                transform.localPosition = startingPos;
                 tucked = !tucked;
 
             }
@@ -41,23 +41,36 @@ public class InventoryManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (instance != null)
-            Destroy(this);
 
-        instance = this;
         tucked = true;
-
-        collectables = new List<InventoryIconScript>();
+        startingPos = transform.localPosition;
+        collectables = new Dictionary<string, InventoryIconScript>();
         
 
     }
-	
+
     public void AddItem(Collectable collectable)
     {
-        InventoryIconScript temp = Instantiate(Resources.Load("Prefabs/UI/InventoryIcon", typeof(InventoryIconScript)) as InventoryIconScript, inventory.transform);
-        temp.Initialize();
-        Debug.Log(temp.itemIcon);
-        temp.itemIcon.sprite = collectable.GetComponent<SpriteRenderer>().sprite;
+        Debug.Log("stackable " + collectable.Stackable + " Name " + collectable.name);
+        if (collectables.ContainsKey(collectable.name) && collectable.Stackable)
+        {
+            collectables[collectable.name].AddToStack(1);
+        }
+        else
+        {
+
+            InventoryIconScript temp = Instantiate(Resources.Load("Prefabs/UI/ItemStackIcon", typeof(InventoryIconScript)) as InventoryIconScript, inventory.transform);
+            if (collectable.Stackable)
+            {
+                temp.Initialize(1);
+            }
+            else
+            {
+                temp.Initialize();
+            }
+            temp.itemIcon.sprite = collectable.GetComponent<SpriteRenderer>().sprite;
+            collectables.Add(collectable.name, temp);
+        }
     }
 
 
