@@ -12,6 +12,8 @@ TagManager:
   - EnemySight
   - Projectile
   - Items
+  - Warp
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -30,8 +32,8 @@ TagManager:
   - PlayerAttack
   - ItemTrigger
   - ItemBody
-  - 
-  - 
+  - Object
+  - Warp
   - 
   - 
   - 

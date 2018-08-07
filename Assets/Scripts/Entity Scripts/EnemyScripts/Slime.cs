@@ -10,6 +10,13 @@ public class Slime : EnemyBehaviour {
     WallCheck wallCheck;
     public float turnTime = 1f;
     public float timer = 0;
+
+    [SerializeField]
+    bool checkForExit = false;
+    float exitTimer;
+
+    [SerializeField]
+    float exitTime;
     // Use this for initialization
     public override void Start () {
         base.Start();
@@ -22,11 +29,12 @@ public class Slime : EnemyBehaviour {
 
     private void FixedUpdate()
     {
-        
+        if (knockback)
+            return;
 
         if (enemySight.target != null)
         {
-
+            
             HasTargetBehaviour();
         }
         else
@@ -40,6 +48,16 @@ public class Slime : EnemyBehaviour {
     // Update is called once per frame
     void Update () {
 
+        if(checkForExit)
+        {
+            if (exitTimer > 0)
+            {
+                exitTimer -= Time.deltaTime;
+            } else
+            {
+                checkForExit = false;
+            }
+        }
 
         if (moveComponent.Direction < 0)
         {
@@ -127,10 +145,30 @@ public class Slime : EnemyBehaviour {
 
                 rb.velocity = new Vector2(-10, 5);
             }
-            knockback = true;
+            checkForExit = true;
+            exitTimer = exitTime;
         }
 
     }
 
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            if (checkForExit)
+            {
+                knockback = true;
+                checkForExit = false;
+            }
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Ground")
+        {
+            knockback = false;
+        }
+    }
 
 }
