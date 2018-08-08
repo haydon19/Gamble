@@ -62,10 +62,12 @@ public class Slime : EnemyBehaviour {
         if (moveComponent.Direction < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
+            GetComponentInChildren<Canvas>().transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
             transform.localScale = new Vector3(1, 1, 1);
+            GetComponentInChildren<Canvas>().transform.localScale = new Vector3(1, 1, 1);
         }
 
 
@@ -132,6 +134,8 @@ public class Slime : EnemyBehaviour {
         if (collider.tag == "PlayerAttack")
         {
             print("Hit by player!");
+            health.TakeDamage(5);
+
             //Hit from the right.
             if ((int)moveComponent.Direction < 0)
             {
@@ -147,6 +151,7 @@ public class Slime : EnemyBehaviour {
             }
             checkForExit = true;
             exitTimer = exitTime;
+
         }
 
     }

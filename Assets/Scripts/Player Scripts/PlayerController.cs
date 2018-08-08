@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         //If the player is falling
-        if(isJumping && rb.velocity.y <= 0)
+        if(isJumping && (rb.velocity.y <= 0 || wallCheck.IsWall))
         {
             isJumping = false;
         }
