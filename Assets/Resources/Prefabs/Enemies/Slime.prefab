@@ -28,6 +28,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1354223565207568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4833081129822756}
+  m_Layer: 11
+  m_Name: Firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1450141217454742
 GameObject:
   m_ObjectHideFlags: 1
@@ -97,7 +112,6 @@ GameObject:
   - component: {fileID: 114055836440845716}
   - component: {fileID: 114850870560760986}
   - component: {fileID: 60348348026018472}
-  - component: {fileID: 114669667635347728}
   - component: {fileID: 114725579617039454}
   m_Layer: 11
   m_Name: Slime
@@ -147,13 +161,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1879314816570136}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.5, y: 3.5, z: 0}
+  m_LocalPosition: {x: -2.5, y: 3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4856623234294652}
   - {fileID: 224974373011077682}
+  - {fileID: 4833081129822756}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4833081129822756
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1354223565207568}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.436, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4647057209243154}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4856623234294652
 Transform:
@@ -285,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a0e30314df2474b823b2357e254745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 4647057209243154}
+  firePoint: {fileID: 0}
   shot: {fileID: 1590889933057308, guid: fa738fd6660cbfc4dbd5c03bfdab63b1, type: 2}
   cooldown: 1
   cooldownTime: 1
@@ -442,12 +470,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  knockback: 0
   enemySight: {fileID: 114553842366965040}
   turnTime: 1
   timer: 0
-  checkForExit: 0
-  exitTime: 0.5
 --- !u!114 &114553842366965040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -463,17 +488,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1280
   target: {fileID: 0}
---- !u!114 &114669667635347728
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879314816570136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2a6a0e15269da24bb1ece9ca2eaf5db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114725579617039454
 MonoBehaviour:
   m_ObjectHideFlags: 1

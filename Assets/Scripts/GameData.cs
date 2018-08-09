@@ -22,7 +22,7 @@ public class GameData : MonoBehaviour {
     public Dictionary<string, Sprite> eventSpriteDictionary;
     public Dictionary<string, Sprite> characterPortraitDictionary;
     public Dictionary<string, Module> modulePrototypes;
-    public Dictionary<string, Enemy> enemyDictionary;
+    //public Dictionary<string, Enemy> enemyDictionary;
     public Dictionary<int, string> names;
     List<string> enemyKeyList;
     List<string> shipNames;
@@ -54,7 +54,7 @@ public class GameData : MonoBehaviour {
         createModulePrototypes();
         //Create prototype lists, eventually this will just be importing from an XML file or something
         createNameDictionary();
-        createEnemyPrototypes();
+        //createEnemyPrototypes();
         createShipNameList();
     }
 
@@ -154,6 +154,7 @@ public class GameData : MonoBehaviour {
 
     }
 
+    /*
     public void createEnemyPrototypes()
     {
         enemyDictionary = new Dictionary<string, Enemy>();
@@ -165,7 +166,9 @@ public class GameData : MonoBehaviour {
 
         enemyKeyList = new List<string>(enemyDictionary.Keys);
     }
+    */
 
+    /*
     //When we want a new enemy, we get a random one using this function
     public Enemy getRandomEnemy()
     {
@@ -175,6 +178,7 @@ public class GameData : MonoBehaviour {
         Enemy enemy = new Enemy(enemyDictionary[randomKey].Name, enemyDictionary[randomKey].ID, enemyDictionary[randomKey].getStat("Strength"), enemyDictionary[randomKey].getStat("Mind"), enemyDictionary[randomKey].getStat("Agility"), enemyDictionary[randomKey].getStat("Piloting"));
         return enemy;
     }
+    */
 
     public void createShipNameList()
     {

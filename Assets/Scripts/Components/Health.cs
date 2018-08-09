@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Death))]
 public class Health : MonoBehaviour {
 
     public int maxHP;
     public int currentHP;
-    Death deathComponent;
+    bool dead = false;
 
     [SerializeField]
     HealthBar healthBar;
@@ -15,9 +14,8 @@ public class Health : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         currentHP = maxHP;
-        deathComponent = GetComponent<Death>();
         healthBar.UpdateHealth(currentHP, maxHP);
-
+        dead = false;
     }
 
     public void TakeDamage(int damage)
@@ -35,7 +33,7 @@ public class Health : MonoBehaviour {
 
         if(currentHP == 0)
         {
-            deathComponent.OnDeath();
+            Die();
         }
     }
 
@@ -52,6 +50,19 @@ public class Health : MonoBehaviour {
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         healthBar.UpdateHealth(currentHP, maxHP);
 
+    }
+
+    public void Die()
+    {
+        GameObject coinTemp;
+        for (int i = 0; i < 10; i++)
+        {
+            coinTemp = Instantiate(Resources.Load("Prefabs/Collectables/Coin"), transform.position, Quaternion.identity) as GameObject;
+            coinTemp.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1,1), Random.Range(0,5));
+            coinTemp.name = "Coin";
+        }
+
+        Destroy(gameObject);
     }
 
 }

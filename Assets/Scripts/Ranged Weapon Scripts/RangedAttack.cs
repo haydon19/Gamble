@@ -21,6 +21,7 @@ public class RangedAttack : MonoBehaviour {
     private void Awake()
     {
         //by default, the transform is the firepoint but we can set it later if we want
+        if(!firePoint)
         firePoint = this.transform;
         
     }

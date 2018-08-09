@@ -3,20 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementComponent))]
-public class Slime : EnemyBehaviour {
+public class Slime : Enemy {
 
-    protected MovementComponent moveComponent;
     GroundCheck groundCheck;
     WallCheck wallCheck;
     public float turnTime = 1f;
     public float timer = 0;
 
-    [SerializeField]
-    bool checkForExit = false;
-    float exitTimer;
-
-    [SerializeField]
-    float exitTime;
     // Use this for initialization
     public override void Start () {
         base.Start();
@@ -29,8 +22,6 @@ public class Slime : EnemyBehaviour {
 
     private void FixedUpdate()
     {
-        if (knockback)
-            return;
 
         if (enemySight.target != null)
         {
@@ -48,16 +39,6 @@ public class Slime : EnemyBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if(checkForExit)
-        {
-            if (exitTimer > 0)
-            {
-                exitTimer -= Time.deltaTime;
-            } else
-            {
-                checkForExit = false;
-            }
-        }
 
         if (moveComponent.Direction < 0)
         {
@@ -128,52 +109,5 @@ public class Slime : EnemyBehaviour {
     //To fix this, we should either give enemies a collision manager, and then different types can managed their own types of collisions
     //or we seperate the enemies into collidable and non-collidable
 
-    public void OnTriggerEnter2D(Collider2D collider)
-    {
-
-        if (collider.tag == "PlayerAttack")
-        {
-            print("Hit by player!");
-            health.TakeDamage(5);
-
-            //Hit from the right.
-            if ((int)moveComponent.Direction < 0)
-            {
-                rb.velocity = new Vector2(10, 5);
-                print("Hit from left.");
-            }
-            //Hit from the left or equal.
-            else
-            {
-                //print("Hit from right.");
-
-                rb.velocity = new Vector2(-10, 5);
-            }
-            checkForExit = true;
-            exitTimer = exitTime;
-
-        }
-
-    }
-
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Ground")
-        {
-            if (checkForExit)
-            {
-                knockback = true;
-                checkForExit = false;
-            }
-        }
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.collider.tag == "Ground")
-        {
-            knockback = false;
-        }
-    }
 
 }

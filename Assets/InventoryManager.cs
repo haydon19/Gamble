@@ -51,7 +51,6 @@ public class InventoryManager : MonoBehaviour {
 
     public void AddItem(Collectable collectable)
     {
-        Debug.Log("stackable " + collectable.Stackable + " Name " + collectable.name);
         if (collectables.ContainsKey(collectable.name) && collectable.Stackable)
         {
             collectables[collectable.name].AddToStack(1);

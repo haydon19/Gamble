@@ -53,7 +53,7 @@ public class WallCheck : MonoBehaviour {
         } else
         {
             IsWall = false;
-            Debug.Log(gameObject.tag + " sees nothing");
+
 
         }
 
@@ -64,7 +64,7 @@ public class WallCheck : MonoBehaviour {
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3.right * distance));
+        Gizmos.DrawLine(transform.position + offset, transform.position + offset + (Vector3.right * distance));
 
     }
 }

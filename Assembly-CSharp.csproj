@@ -75,9 +75,6 @@
     <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\Background Scripts\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\Components\Collectable.cs" />
-    <Compile Include="Assets\Scripts\Components\Death.cs" />
-    <Compile Include="Assets\Scripts\Components\EnemyBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Components\EnemySight.cs" />
     <Compile Include="Assets\Scripts\Components\Health.cs" />
     <Compile Include="Assets\Scripts\Components\Item.cs" />
     <Compile Include="Assets\Scripts\Components\MovementComponent.cs" />
@@ -90,11 +87,13 @@
     <Compile Include="Assets\Scripts\Effect.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Character Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Character Scripts\CharacterTrait.cs" />
-    <Compile Include="Assets\Scripts\Entity Scripts\Character Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Character Scripts\PartyManager.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\Dragon.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\EnemySight.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\Slime.cs" />
-    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\TurrentBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\EnemyScripts\WizWard.cs" />
+    <Compile Include="Assets\Scripts\Entity Scripts\Hazard.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Ship Scripts\SpaceShip.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\StatBonus.cs" />
     <Compile Include="Assets\Scripts\Entity Scripts\Stats.cs" />

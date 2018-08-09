@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dragon : EnemyBehaviour {
+public class Dragon : Enemy {
 
     float timeCounter = 0;
 
@@ -10,19 +10,18 @@ public class Dragon : EnemyBehaviour {
     public float width;
     public float height;
     public float foundWidth, foundHeight;
-    Vector3 startPos;
+
+
     bool hadTarget = false;
 
     public override void Start()
     {
         base.Start();
-        startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update () {
 
-        startPos = transform.position;
         timeCounter += Time.deltaTime * speed;
 
         float xWave = 0, yWave = 0;

@@ -40,7 +40,7 @@ public class ProjectileBehaviour : MonoBehaviour {
     {
         if (collision.tag == "Ground")
         {
-            print("Ground hit: Projectile Script");
+
 
             Destroy(transform.gameObject);
         }
@@ -51,11 +51,11 @@ public class ProjectileBehaviour : MonoBehaviour {
             //Destroy(gameObject);
         }
 
-        if (collision.tag == "PlayerAttack")
+        if (collision.tag == "PlayerAttack" && collision.gameObject.layer != 12)
         {
-            print("Hit by player!");
 
             transform.Rotate(new Vector3(0,0,180));
+            gameObject.tag = "PlayerAttack";
             
         }
     }

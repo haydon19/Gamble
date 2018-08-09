@@ -167,14 +167,14 @@ public class PlayerController : MonoBehaviour {
             }
             else
             {
-                Debug.Log("calling");
+
                 MovementComponent.MoveHorizontal((int)MovementComponent.Direction * walkSpeed);    
             }
         }
 
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
-            if (WallCheck.IsWall)
+            if (WallCheck.IsWall && GroundCheck.groundState != GroundState.Grounded)
             {
                 MovementComponent.Direction = (Direction)(-(int)MovementComponent.Direction);
                 jumpComponent.JumpAway(MovementComponent.Direction);
