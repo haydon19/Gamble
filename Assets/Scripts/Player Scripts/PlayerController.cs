@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     public float jumpSpeed = 8;
     public float attackSpeed = 0.2f;
     public float attackCooldown = 0f;
-
+    public bool climbing = false;
     /* States */
     public MovementState movementState = MovementState.Idle;
     public bool isJumping = false, isCrouching = false, isAttacking = false, isAiming = false;
@@ -102,8 +102,16 @@ public class PlayerController : MonoBehaviour {
 
     void StateHandler()
     {
+
+        if (climbing)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        } else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
         //Check whether the player is moving or not, and set our movestate
-        if(rb.velocity.magnitude > 0)
+        if (rb.velocity.magnitude > 0)
         {
             movementState = MovementState.Moving; 
         } else
@@ -131,7 +139,7 @@ public class PlayerController : MonoBehaviour {
 
         /*Crouch*/
 
-        if (leftInputY < -0.5)
+        if (leftInputY < -0.5 && !climbing)
         {
             if (GroundCheck.groundState == GroundState.Grounded && !isAttacking)
             {
@@ -238,9 +246,40 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
-  
 
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Ladder")
+        {
+            if(Input.GetAxis("LVertical") == 1)
+            {
+                climbing = true;
+                transform.position = new Vector2( collision.transform.position.x, transform.position.y);
+                movementComponent.MoveVertical(collision.GetComponent<Ladder>().ClimbSpeed);
+            } else if (Input.GetAxis("LVertical") == -1)
+            {
+                climbing = true;
+                transform.position = new Vector2(collision.transform.position.x, transform.position.y);
+                movementComponent.MoveVertical(-collision.GetComponent<Ladder>().ClimbSpeed);
+            } else if(climbing)
+            {
+                rb.gravityScale = 0;
+                rb.velocity = new Vector2(0, 0);
+            }
+        }
 
- 
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Ladder" && climbing)
+        {
+            climbing = false;
+            rb.gravityScale = 2;
+
+        }
+    }
+
+
 }

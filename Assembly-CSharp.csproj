@@ -72,6 +72,7 @@
     <Compile Include="Assets\EnemyHealthBar.cs" />
     <Compile Include="Assets\InventoryIconScript.cs" />
     <Compile Include="Assets\InventoryManager.cs" />
+    <Compile Include="Assets\Ladder.cs" />
     <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\Background Scripts\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\Components\Collectable.cs" />
