@@ -37,6 +37,8 @@ public class WarpPad : MonoBehaviour {
             }
             else
             {
+
+                collider.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 Warp(collider.transform.root);
             }
         }

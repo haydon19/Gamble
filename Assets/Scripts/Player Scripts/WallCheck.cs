@@ -14,7 +14,11 @@ public class WallCheck : MonoBehaviour {
     [SerializeField]
     bool isWall;
     [SerializeField]
-    Vector3 offset;
+    Vector3 offsetMiddle;
+    [SerializeField]
+    Vector3 offsetTop;
+    [SerializeField]
+    Vector3 offsetBottom;
     [SerializeField]
     LayerMask layerMask;
 
@@ -41,11 +45,13 @@ public class WallCheck : MonoBehaviour {
         void Update() {
 
         //RayCast emitting horizontally from the attached object facing the direction they are moving or had last moved.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + offset, (Vector3.right * (int)movement.Direction), distance, layerMask);
+        RaycastHit2D hitTop = Physics2D.Raycast(transform.position + offsetTop, (Vector3.right * (int)movement.Direction), distance, layerMask);
+        //RayCast emitting horizontally from the attached object facing the direction they are moving or had last moved.
+        RaycastHit2D hitBot = Physics2D.Raycast(transform.position + offsetBottom, (Vector3.right * (int)movement.Direction), distance, layerMask);
 
-        if (hit)
+        if (hitTop || hitBot)
         {
-            Debug.Log(gameObject.tag + " sees " + hit.collider.tag);
+
 
             //GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
             IsWall = true;
@@ -64,7 +70,9 @@ public class WallCheck : MonoBehaviour {
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(transform.position + offset, transform.position + offset + (Vector3.right * distance));
+        Gizmos.DrawLine(transform.position + offsetTop, transform.position + offsetTop + (Vector3.right * distance));
+        Gizmos.DrawLine(transform.position + offsetBottom, transform.position + offsetBottom + (Vector3.right * distance));
+
 
     }
 }

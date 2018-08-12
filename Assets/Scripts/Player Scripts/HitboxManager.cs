@@ -6,11 +6,11 @@ public class HitboxManager : MonoBehaviour {
 
     // Used for organization
     [SerializeField]
-    private List<BoxCollider2D> colliders;
+    private List<Collider2D> colliders;
 
     // Collider on this game object
     [SerializeField]
-    private BoxCollider2D activeHitbox;
+    private Collider2D activeHitbox;
     private PlayerController player;
     [SerializeField]
     private Collider2D attackTrigger;
