@@ -103,13 +103,7 @@ public class PlayerController : MonoBehaviour {
     void StateHandler()
     {
 
-        if (climbing)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        } else
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
+
         //Check whether the player is moving or not, and set our movestate
         if (rb.velocity.magnitude > 0)
         {
@@ -182,20 +176,32 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
-            if (WallCheck.IsWall && GroundCheck.groundState != GroundState.Grounded)
-            {
-                MovementComponent.Direction = (Direction)(-(int)MovementComponent.Direction);
-                jumpComponent.JumpAway(MovementComponent.Direction);
-                isJumping = true;
-            }
             //Initial Jump
-            if (GroundCheck.groundState == GroundState.Grounded && !isJumping)
+            if (GroundCheck.groundState == GroundState.Grounded)
             {
-                //the initial jumping force
                 jumpComponent.Jump();
                 isJumping = true;
-
             }
+            else
+            {
+                if (WallCheck.IsWall)
+                {
+                    MovementComponent.Direction = (Direction)(-(int)MovementComponent.Direction);
+                    jumpComponent.JumpAway(MovementComponent.Direction);
+                    isJumping = true;
+                }
+
+                if (climbing)
+                {
+                    //the initial jumping force
+                    StopClimbing();
+
+                    jumpComponent.JumpAway(MovementComponent.Direction);
+                    isJumping = true;
+                }
+            }
+            
+           
         } else if (Input.GetButton("Jump") && isJumping) {
 
             //if we continue to hold the jump button, add a bit more force
@@ -252,19 +258,15 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.tag == "Ladder")
         {
-            if(Input.GetAxis("LVertical") == 1)
+            if(Input.GetAxis("LVertical") > 0 || Input.GetAxis("LVertical") < 0)
             {
-                climbing = true;
-                transform.position = new Vector2( collision.transform.position.x, transform.position.y);
-                movementComponent.MoveVertical(collision.GetComponent<Ladder>().ClimbSpeed);
-            } else if (Input.GetAxis("LVertical") == -1)
-            {
-                climbing = true;
-                transform.position = new Vector2(collision.transform.position.x, transform.position.y);
-                movementComponent.MoveVertical(-collision.GetComponent<Ladder>().ClimbSpeed);
+                if (!climbing)
+                {
+                    StartClimbing(collision.transform);
+                }
+                movementComponent.MoveVertical(5 * Input.GetAxis("LVertical"));
             } else if(climbing)
             {
-                rb.gravityScale = 0;
                 rb.velocity = new Vector2(0, 0);
             }
         }
@@ -275,11 +277,28 @@ public class PlayerController : MonoBehaviour {
     {
         if(collision.tag == "Ladder" && climbing)
         {
-            climbing = false;
-            rb.gravityScale = 2;
+            StopClimbing();
 
         }
     }
 
+    void StartClimbing(Transform t)
+    {
 
+        rb.gravityScale = 0;
+        climbing = true;
+        transform.position = new Vector2(t.position.x, transform.position.y);
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
+    }
+
+
+    void StopClimbing()
+    {
+
+        climbing = false;
+        rb.gravityScale = 2;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+    }
 }
