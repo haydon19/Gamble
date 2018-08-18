@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RangedAttack))]
-public class WizWard : Enemy {
+public class WizWard : Hazard {
 
     RangedAttack rangedAttack;
+    public EnemySight m_EnemySight;
 
     // Use this for initialization
-    public override void Start () {
-        base.Start();
+    public void Start () {
         rangedAttack = GetComponent<RangedAttack>();
-        rangedAttack.firePoint = enemySight.transform;
+        rangedAttack.firePoint = m_EnemySight.transform;
     }
 
     private void Update()
     {
-        if(enemySight.target != null)
+        if(m_EnemySight.target != null)
         {
-            if (enemySight.CheckLineOfSight())
+            if (m_EnemySight.CheckLineOfSight())
             {
                 //Debug.Log("Shooting at " + target.tag);
-                rangedAttack.Shoot(enemySight.target);
+                rangedAttack.Shoot(m_EnemySight.target);
             }
 
         }

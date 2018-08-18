@@ -16,6 +16,7 @@ TagManager:
   - Object
   - Ship
   - Ladder
+  - Console
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - Object
   - Warp
   - Ladder
-  - 
+  - Console
   - 
   - 
   - 
@@ -50,11 +51,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 4236109095
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: HiddenItems
     uniqueID: 667506461
@@ -77,6 +78,6 @@ TagManager:
   - name: PlayerArm
     uniqueID: 1095472397
     locked: 0
-  - name: New Layer
+  - name: UI
     uniqueID: 2626803417
     locked: 0

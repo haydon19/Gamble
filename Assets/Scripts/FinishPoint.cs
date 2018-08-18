@@ -13,4 +13,15 @@ public class FinishPoint : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (Input.GetButton("Jump"))
+            {
+                LevelManager.instance.ReturnToHub();
+            }
+        }
+    }
 }

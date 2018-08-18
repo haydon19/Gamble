@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: dd3b521765fae4e4fb4d4d1c06034c91
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Alien Plant_0
+    21300002: Alien Plant_1
+    21300004: Alien Plant_2
+    21300006: Alien Plant_3
+    21300008: Alien Plant_4
+    21300010: Alien Plant_5
+    21300012: Alien Plant_6
+    21300014: Alien Plant_7
+    21300016: Alien Plant_8
+    21300018: Alien Plant_9
+    21300020: Alien Plant_10
+    21300022: Alien Plant_11
+    21300024: Alien Plant_12
+    21300026: Alien Plant_13
+    21300028: Alien Plant_14
+    21300030: Alien Plant_15
+    21300032: Alien Plant_16
+    21300034: Alien Plant_17
+    21300036: Alien Plant_18
+    21300038: Alien Plant_19
+    21300040: Alien Plant_20
+    21300042: Alien Plant_21
+    21300044: Alien Plant_22
+    21300046: Alien Plant_23
+    21300048: Alien Plant_24
+    21300050: Alien Plant_25
+    21300052: Alien Plant_26
+    21300054: Alien Plant_27
+    21300056: Alien Plant_28
+    21300058: Alien Plant_29
+    21300060: Alien Plant_30
+    21300062: Alien Plant_31
+    21300064: Alien Plant_32
+    21300066: Alien Plant_33
+    21300068: Alien Plant_34
+    21300070: Alien Plant_35
+    21300072: Alien Plant_36
+    21300074: Alien Plant_37
+    21300076: Alien Plant_38
+    21300078: Alien Plant_39
+    21300080: Alien Plant_40
+    21300082: Alien Plant_41
+    21300084: Alien Plant_42
+    21300086: Alien Plant_43
+    21300088: Alien Plant_44
+    21300090: Alien Plant_45
+    21300092: Alien Plant_46
+    21300094: Alien Plant_47
+    21300096: Alien Plant_48
+    21300098: Alien Plant_49
+    21300100: Alien Plant_50
+    21300102: Alien Plant_51
+    21300104: Alien Plant_52
+    21300106: Alien Plant_53
+    21300108: Alien Plant_54
+    21300110: Alien Plant_55
+    21300112: Alien Plant_56
+    21300114: Alien Plant_57
+    21300116: Alien Plant_58
+    21300118: Alien Plant_59
+    21300120: Alien Plant_60
+    21300122: Alien Plant_61
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Alien Plant_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab304df89f51514ab1e78faca6e3a21
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien Plant_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea7280fc67baa9146acfeee530a1846a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien Plant_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9ad6cf6b95728544956abbee689a409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien Plant_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a8587884553e548ad96564906ab2f8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2eae322335246894180f62c05de7dce3
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

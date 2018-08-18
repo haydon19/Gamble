@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 4868692607211556}
-  shot: {fileID: 1308026165143526, guid: ae9e3b8e327294d4589a4b0bdd983153, type: 2}
+  shot: {fileID: 114953917187469048, guid: ae9e3b8e327294d4589a4b0bdd983153, type: 2}
   cooldown: 0.2
   cooldownTime: 0.2
   onCooldown: 0
@@ -348,13 +348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd49df7b1a124f64fb9dc0e0a858e189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  enemySight: {fileID: 114752323654969738}
-  speed: 1
-  width: 0.1
-  height: 0.1
-  foundWidth: 0
-  foundHeight: 0
+  m_EnemySight: {fileID: 0}
+  wanderPoint: {x: 0, y: 0, z: 0}
+  hoverPoint: {x: 0, y: 0, z: 0}
+  wanderRange: {x: 15, y: 15}
 --- !u!114 &114337044377123728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,6 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
+  speed: 5
 --- !u!212 &212508603370480674
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -503,7 +501,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1384496117
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a9b50d1a30133404fbcc02344fedf25d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -26,7 +26,7 @@ public class MainMenuController : MonoBehaviour {
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("Scene1");
+        SceneManager.LoadScene("HubScene");
     }
 
     public void ChangeScreen(int screen)

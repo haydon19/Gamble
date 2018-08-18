@@ -5,25 +5,26 @@ using UnityEngine;
 [RequireComponent(typeof(MovementComponent))]
 public class Slime : Enemy {
 
-    GroundCheck groundCheck;
-    WallCheck wallCheck;
     public float turnTime = 1f;
     public float timer = 0;
 
     // Use this for initialization
-    public override void Start () {
-        base.Start();
+    public void Start () {
+
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_MovementComponent = GetComponent<MovementComponent>();
+        m_EnemySight = GetComponentInChildren<EnemySight>();
+        m_Health = GetComponent<Health>();
         turnTime = Random.Range(1, 5);
-        moveComponent = GetComponent<MovementComponent>();
-        groundCheck = groundCheck = GetComponent<GroundCheck>();
-        wallCheck = GetComponent<WallCheck>();
+        m_GroundCheck = GetComponent<GroundCheck>();
+        m_WallCheck = GetComponent<WallCheck>();
     }
 
 
     private void FixedUpdate()
     {
 
-        if (enemySight.target != null)
+        if (m_EnemySight.target != null)
         {
             
             HasTargetBehaviour();
@@ -40,7 +41,7 @@ public class Slime : Enemy {
     void Update () {
 
 
-        if (moveComponent.Direction < 0)
+        if (m_MovementComponent.Direction < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
             GetComponentInChildren<Canvas>().transform.localScale = new Vector3(-1, 1, 1);
@@ -66,29 +67,29 @@ public class Slime : Enemy {
         else
         {
             timer = 0;
-            moveComponent.Direction = (Direction)((int)moveComponent.Direction * -1);
+            m_MovementComponent.Direction = (Direction)((int)m_MovementComponent.Direction * -1);
 
         }
 
-        if (groundCheck.groundState == GroundState.Grounded && !wallCheck.IsWall)
-            moveComponent.MoveHorizontal((int)moveComponent.Direction * 3);
+        if (m_GroundCheck.groundState == GroundState.Grounded && !m_WallCheck.IsWall)
+            m_MovementComponent.MoveHorizontal();
     }
 
     void HasTargetBehaviour()
     {
 
-        if (enemySight.target.position.x < transform.position.x)
+        if (m_EnemySight.target.position.x < transform.position.x)
         {
-            moveComponent.Direction = Direction.Left;
+            m_MovementComponent.Direction = Direction.Left;
         }
         else
         {
-            moveComponent.Direction = Direction.Right;
+            m_MovementComponent.Direction = Direction.Right;
         }
         //Shoot
-        if (enemySight.CheckLineOfSight())
+        if (m_EnemySight.CheckLineOfSight())
         {
-            GetComponent<RangedAttack>().Shoot(enemySight.target);
+            GetComponent<RangedAttack>().Shoot(m_EnemySight.target);
 
         } else
         {
@@ -102,7 +103,12 @@ public class Slime : Enemy {
     {
         
 
-        moveComponent.MoveHorizontal((int)moveComponent.Direction * 3);
+        m_MovementComponent.MoveHorizontal();
+    }
+
+    public override void Reset()
+    {
+        throw new System.NotImplementedException();
     }
 
     //There was problems with this in the genereal enemy code, due to the fact that the Turret was an enemy but didnt have a rigidbody

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveBullet : ProjectileBehaviour
+public class WaveBullet : Projectile
 {
 
     public float altitude = 5;
@@ -10,9 +10,9 @@ public class WaveBullet : ProjectileBehaviour
     public float frequency = 2;
     public float flyTime;
     // Use this for initialization
-    public override void Start()
+      void Start()
     {
-        base.Start();
+        rb = GetComponent<Rigidbody2D>();
         flyTime = 0;
     }
 

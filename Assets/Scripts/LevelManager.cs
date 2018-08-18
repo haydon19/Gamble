@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
     public static LevelManager instance;
-    public PlayerController player;
+    public Player player;
     public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     public FinishPoint goalFlag;
     public bool end = false;
@@ -51,5 +51,10 @@ public class LevelManager : MonoBehaviour {
         if (maps[index].transform.parent != null)
             maps[index].transform.parent.gameObject.SetActive(true);
         maps[index].gameObject.SetActive(true);
+    }
+
+    public void ReturnToHub()
+    {
+        SceneManager.LoadScene("HubScene");
     }
 }

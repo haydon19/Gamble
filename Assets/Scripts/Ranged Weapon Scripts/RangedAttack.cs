@@ -13,7 +13,7 @@ public class RangedAttack : MonoBehaviour {
     
     //Should the cooldown go in here? Or does the entity keep track of that?
     public Transform firePoint;
-    public GameObject shot; //Right now this is set up to shoot any object, might be worth exploring or just let it shoot "bullets"
+    public Projectile shot; //Right now this is set up to shoot any object, might be worth exploring or just let it shoot "bullets"
     public float cooldown = 1;
     public float cooldownTime = 1;
     public bool onCooldown = false;
@@ -62,10 +62,15 @@ public class RangedAttack : MonoBehaviour {
         Vector3 vectorToTarget = target.position - firePoint.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
-        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle));     
+        Projectile bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle));     
 
+        if(bullet is HomingBullet)
+        {
+            ((HomingBullet)bullet).Init(target);
+        }
 
     }
+
 
     //given an angle
     public void Shoot(float angle)
@@ -82,7 +87,7 @@ public class RangedAttack : MonoBehaviour {
         //print("Fire!");
         //Initiates a bullet at target angle
 
-        GameObject bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle));
+        Projectile bullet = Instantiate(shot, firePoint.position, Quaternion.Euler(0, 0, angle));
 
 
     }

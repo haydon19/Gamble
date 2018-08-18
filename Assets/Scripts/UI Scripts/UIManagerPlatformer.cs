@@ -25,6 +25,7 @@ public class UIManagerPlatformer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         instance = this;	
 	}
 	
